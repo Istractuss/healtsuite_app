@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthSuite - Suite de Herramientas de Salud</title>
+    <link rel="stylesheet" href="css/menu-principal.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HealthSuite</h1>
+            <p class="subtitle">Suite de herramientas para profesionales de la salud</p>
+        </header>
+        
+        <div class="apps-grid">
+            <div class="app-card" onclick="cargarApp('enfermeria')">
+                <div class="app-icon">💊</div>
+                <h2>Calculadora de Enfermería</h2>
+                <p>Calculadora de dosificación de medicamentos y cálculos médicos</p>
+                <ul>
+                    <li>Regla de tres para medicamentos</li>
+                    <li>Cálculo de goteo intravenoso</li>
+                    <li>Calculadora de nebulización</li>
+                </ul>
+            </div>
+            
+            <div class="app-card" onclick="cargarApp('psicologia')">
+                <div class="app-icon">🧠</div>
+                <h2>Recursos de Psicología</h2>
+                <p>Herramientas para estudiantes y profesionales de psicología</p>
+                <ul>
+                    <li>Tests psicológicos interactivos</li>
+                    <li>Guías DSM-5 resumidas</li>
+                    <li>Material de estudio y casos clínicos</li>
+                </ul>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 HealthSuite - Herramientas para profesionales de la salud</p>
+        </footer>
+    </div>
+
+    <script src="js/menu-principal.js"></script>
+</body>
+</html>
