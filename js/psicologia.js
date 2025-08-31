@@ -404,8 +404,8 @@ function mostrarDetallesTeoria(teoriaId) {
             const conductismoCard = document.querySelector("[data-teoria-id='conductismo']");
             conductismoCard.insertAdjacentElement("afterend", elements.teoriaDetails);
         } else {
-            // devolver los detalles a su posición normal (al final de #teorias)
-            const teoriasSection = document.getElementById("teorias");
+            // Moverlos despues de la card de cognitivismo
+            const teoriasSection = document.getElementById("teorias-grid");
             teoriasSection.appendChild(elements.teoriaDetails);
         }
     }
