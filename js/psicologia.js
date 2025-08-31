@@ -398,8 +398,19 @@ function mostrarDetallesTeoria(teoriaId) {
         elements.teoriaTitle.textContent = teoria.titulo;
         elements.teoriaContent.innerHTML = teoria.contenido;
         elements.teoriaDetails.classList.remove('hidden');
+
+        if (teoriaId === "conductismo" || teoriaId === "psicoanalisis") {
+            // mover los detalles justo después de la tarjeta de conductismo
+            const conductismoCard = document.querySelector("[data-teoria-id='conductismo']");
+            conductismoCard.insertAdjacentElement("afterend", elements.teoriaDetails);
+        } else {
+            // devolver los detalles a su posición normal (al final de #teorias)
+            const teoriasSection = document.getElementById("teorias");
+            teoriasSection.appendChild(elements.teoriaDetails);
+        }
     }
 }
+
 
 /** Oculta los detalles de la teoría actualmente visible. */
 function ocultarDetallesTeoria() {

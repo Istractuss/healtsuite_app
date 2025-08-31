@@ -213,6 +213,7 @@ h3 {
   padding: 0;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   margin-top: 20px;
+  grid-column: span 2;
 }
 
 .detalles-teoria.hidden {
@@ -234,6 +235,9 @@ h3 {
   color: var(--primary);
 }
 
+.detalles-contenido ul{
+  padding-left: 20px;
+}
 .btn-cerrar {
   background: none;
   border: none;

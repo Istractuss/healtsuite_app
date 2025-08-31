@@ -22,191 +22,187 @@
             <div class="nav-tab active" data-target="teorias">Teorías</div>
             <div class="nav-tab" data-target="trastornos">Trastornos</div>
             <div class="nav-tab" data-target="escalas">Escalas</div>
-            <div class="nav-tab" data-target="calculadoras">Tests</div>
-            <div class="nav-tab" data-target="glosario">Glosario</div>
-            <div class="nav-tab" data-target="tecnicas">Técnicas</div>
-        </div>
+        <div class="nav-tab" data-target="calculadoras">Tests</div>
+        <div class="nav-tab" data-target="glosario">Glosario</div>
+        <div class="nav-tab" data-target="tecnicas">Técnicas</div>
+    </div>
 
-                <div class="section active" id="teorias">
-            <h2>Teorías Psicológicas</h2>
-            <p class="section-description">Explora las principales corrientes teóricas de la psicología y sus representantes más influyentes.</p>
-            
-            <div class="teorias-grid">
-                <div class="teoria-card" data-teoria-id="psicoanalisis">
-                    <div class="teoria-icon">🛌</div>
-                    <h3>Psicoanálisis</h3>
-                    <p>Enfatiza la influencia del inconsciente en la conducta humana.</p>
-                    <button class="btn-teoria" onclick="mostrarDetallesTeoria('psicoanalisis');">Ver detalles</button>
-                </div>
-                
-                <div class="teoria-card" data-teoria-id="conductismo">
-                    <div class="teoria-icon">🐭</div>
-                    <h3>Conductismo</h3>
-                    <p>Estudia la conducta observable y los mecanismos de aprendizaje.</p>
-                    <button class="btn-teoria" onclick="mostrarDetallesTeoria('conductismo');">Ver detalles</button>
-                </div>
-                
-                <div class="teoria-card" data-teoria-id="humanismo">
-                    <div class="teoria-icon">🌱</div>
-                    <h3>Humanismo</h3>
-                    <p>Centrado en el potencial humano y la autorrealización.</p>
-                    <button class="btn-teoria" onclick="mostrarDetallesTeoria('humanismo');">Ver detalles</button>
-                </div>
-                
-                <div class="teoria-card" data-teoria-id="cognitivismo">
-                    <div class="teoria-icon">🧠</div>
-                    <h3>Cognitivismo</h3>
-                    <p>Estudio de los procesos mentales como percepción y memoria.</p>
-                    <button class="btn-teoria" onclick="mostrarDetallesTeoria('cognitivismo');">Ver detalles</button>
-                </div>
-            </div>
+    <div class="section active" id="teorias">
+        <h2>Teorías Psicológicas</h2>
+        <p class="section-description">Explora las principales corrientes teóricas de la psicología y sus representantes más influyentes.</p>
+        
+        <div class="teorias-grid">
+            <div class="teoria-card" data-teoria-id="psicoanalisis">
+                <div class="teoria-icon">🛌</div>
+                <h3>Psicoanálisis</h3>
+                <p>Enfatiza la influencia del inconsciente en la conducta humana.</p>
+                <button class="btn-teoria" onclick="mostrarDetallesTeoria('psicoanalisis');">Ver detalles</button>
+            </div>
+            <div class="teoria-card" data-teoria-id="conductismo">
+                <div class="teoria-icon">🐭</div>
+                <h3>Conductismo</h3>
+                <p>Estudia la conducta observable y los mecanismos de aprendizaje.</p>
+                <button class="btn-teoria" onclick="mostrarDetallesTeoria('conductismo');">Ver detalles</button>
+            </div>
+            <div class="teoria-card" data-teoria-id="humanismo">
+                <div class="teoria-icon">🌱</div>
+                <h3>Humanismo</h3>
+                <p>Centrado en el potencial humano y la autorrealización.</p>
+                <button class="btn-teoria" onclick="mostrarDetallesTeoria('humanismo');">Ver detalles</button>
+            </div>
+            <div class="teoria-card" data-teoria-id="cognitivismo">
+                <div class="teoria-icon">🧠</div>
+                <h3>Cognitivismo</h3>
+                <p>Estudio de los procesos mentales como percepción y memoria.</p>
+                <button class="btn-teoria" onclick="mostrarDetallesTeoria('cognitivismo');">Ver detalles</button>
+            </div>
+        </div>
 
-                        <div id="detalles-teoria" class="detalles-teoria hidden">
-                <div class="detalles-header">
-                    <h3 id="teoria-titulo">Psicoanálisis</h3>
-                    <button class="btn-cerrar" onclick="ocultarDetallesTeoria()">✕</button>
-                </div>
-                <div id="teoria-contenido" class="detalles-contenido">
-                                    </div>
-            </div>
-        </div>
+        <div id="detalles-teoria" class="detalles-teoria hidden">
+            <div class="detalles-header">
+                <h3 id="teoria-titulo">Psicoanálisis</h3>
+                <button class="btn-cerrar" onclick="ocultarDetallesTeoria()">✕</button>
+            </div>
+            <div id="teoria-contenido" class="detalles-contenido">
+            </div>
+        </div>
+    </div>
 
-                <div class="section" id="trastornos">
-            <h2>Trastornos Mentales (DSM-5)</h2>
-            <p class="section-description">Información sobre los principales trastornos mentales según el Manual Diagnóstico y Estadístico.</p>
-            
-            <div class="search-box">
-                <input type="text" id="buscar-trastorno" placeholder="Buscar trastorno..." onkeyup="filtrarTrastornos()">
-            </div>
-            
-            <div class="categorias-trastornos">
-                <div class="categoria-card">
-                    <h3>Trastornos de Ansiedad</h3>
-                    <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno de ansiedad generalizada DSM-5')">
-                        <h4>Trastorno de Ansiedad Generalizada</h4>
-                        <p>Ansiedad y preocupación excesivas que ocurren durante más días de los que faltan durante al menos 6 meses.</p>
-                    </div>
-                    <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno de pánico DSM-5')">
-                        <h4>Trastorno de Pánico</h4>
-                        <p>Ataques de pánico inesperados y recurrentes seguidos de preocupación persistente.</p>
-                    </div>
-                    <div class="trastorno-item" onclick="mostrarExplicacion('Fobias específicas en psicología')">
-                        <h4>Fobias Específicas</h4>
-                        <p>Miedo o ansiedad intensa por un objeto o situación específica.</p>
-                    </div>
-                </div>
-                
-                <div class="categoria-card">
-                    <h3>Trastornos del Estado de Ánimo</h3>
-                    <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno depresivo mayor criterios diagnósticos')">
-                        <h4>Trastorno Depresivo Mayor</h4>
-                        <p>Estado de ánimo deprimido la mayor parte del día, casi todos los días.</p>
-                    </div>
-                    <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno bipolar tipos y características')">
-                        <h4>Trastorno Bipolar</h4>
-                        <p>Alternancia entre episodios maníacos/hiplománicos y episodios depresivos.</p>
-                    </div>
-                    <div class="trastorno-item" onclick="mostrarExplicacion('Distimia o trastorno depresivo persistente')">
-                        <h4>Distimia</h4>
-                        <p>Estado de ánimo crónicamente depresivo la mayor parte del día durante al menos 2 años.</p>
-                    </div>
-                </div>
-                
-                <div class="categoria-card">
-                    <h3>Trastornos de Personalidad</h3>
-                    <div class="trastorno-item" onclick="mostrarExplicacion('Trastornos de personalidad grupo A DSM-5')">
-                        <h4>Grupo A (Excéntricos)</h4>
-                        <p>Paranoide, Esquizoide, Esquizotípico - Patrones de comportamiento excéntrico o extraño.</p>
-                    </div>
-                    <div class="trastorno-item" onclick="mostrarExplicacion('Trastornos de personalidad grupo B DSM-5')">
-                        <h4>Grupo B (Dramáticos)</h4>
-                        <p>Antisocial, Límite, Histriónico, Narcisista - Patrones emocionales e impredecibles.</p>
-                    </div>
-                    <div class="trastorno-item" onclick="mostrarExplicacion('Trastornos de personalidad grupo C DSM-5')">
-                        <h4>Grupo C (Ansiosos)</h4>
-                        <p>Evitativo, Dependiente, Obsesivo-Compulsivo - Patrones de ansiedad y temor.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="section" id="trastornos">
+        <h2>Trastornos Mentales (DSM-5)</h2>
+        <p class="section-description">Información sobre los principales trastornos mentales según el Manual Diagnóstico y Estadístico.</p>
+        
+        <div class="search-box">
+            <input type="text" id="buscar-trastorno" placeholder="Buscar trastorno..." onkeyup="filtrarTrastornos()">
+        </div>
+        
+        <div class="categorias-trastornos">
+            <div class="categoria-card">
+                <h3>Trastornos de Ansiedad</h3>
+                <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno de ansiedad generalizada DSM-5')">
+                    <h4>Trastorno de Ansiedad Generalizada</h4>
+                    <p>Ansiedad y preocupación excesivas que ocurren durante más días de los que faltan durante al menos 6 meses.</p>
+                </div>
+                <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno de pánico DSM-5')">
+                    <h4>Trastorno de Pánico</h4>
+                    <p>Ataques de pánico inesperados y recurrentes seguidos de preocupación persistente.</p>
+                </div>
+                <div class="trastorno-item" onclick="mostrarExplicacion('Fobias específicas en psicología')">
+                    <h4>Fobias Específicas</h4>
+                    <p>Miedo o ansiedad intensa por un objeto o situación específica.</p>
+                </div>
+            </div>
+            
+            <div class="categoria-card">
+                <h3>Trastornos del Estado de Ánimo</h3>
+                <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno depresivo mayor criterios diagnósticos')">
+                    <h4>Trastorno Depresivo Mayor</h4>
+                    <p>Estado de ánimo deprimido la mayor parte del día, casi todos los días.</p>
+                </div>
+                <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno bipolar tipos y características')">
+                    <h4>Trastorno Bipolar</h4>
+                    <p>Alternancia entre episodios maníacos/hiplománicos y episodios depresivos.</p>
+                </div>
+                <div class="trastorno-item" onclick="mostrarExplicacion('Distimia o trastorno depresivo persistente')">
+                <h4>Distimia</h4>
+                <p>Estado de ánimo crónicamente depresivo la mayor parte del día durante al menos 2 años.</p>
+            </div>
+        </div>
+        
+        <div class="categoria-card">
+            <h3>Trastornos de Personalidad</h3>
+            <div class="trastorno-item" onclick="mostrarExplicacion('Trastornos de personalidad grupo A DSM-5')">
+                <h4>Grupo A (Excéntricos)</h4>
+                <p>Paranoide, Esquizoide, Esquizotípico - Patrones de comportamiento excéntrico o extraño.</p>
+            </div>
+            <div class="trastorno-item" onclick="mostrarExplicacion('Trastornos de personalidad grupo B DSM-5')">
+                <h4>Grupo B (Dramáticos)</h4>
+                <p>Antisocial, Límite, Histriónico, Narcisista - Patrones emocionales e impredecibles.</p>
+            </div>
+            <div class="trastorno-item" onclick="mostrarExplicacion('Trastornos de personalidad grupo C DSM-5')">
+                <h4>Grupo C (Ansiosos)</h4>
+                <p>Evitativo, Dependiente, Obsesivo-Compulsivo - Patrones de ansiedad y temor.</p>
+            </div>
+        </div>
+    </div>
 
-                <div class="section" id="escalas">
-            <h2>Escalas de Evaluación</h2>
-            <p class="section-description">Instrumentos estandarizados para la evaluación psicológica.</p>
-            
-            <div class="escalas-grid">
-                <div class="escala-card">
-                    <h3>Escala de Depresión de Beck (BDI-II)</h3>
-                    <p>21 ítems que evalúan la severidad de la depresión en adultos y adolescentes.</p>
-                    <div class="escala-meta">
-                        <span>📝 Autoadministrado</span>
-                        <span>⏱ 10 minutos</span>
-                    </div>
-                    <button class="btn-escala" onclick="iniciarTest('beck')">Realizar test</button>
-                </div>
-                
-                <div class="escala-card">
-                    <h3>Escala de Ansiedad de Hamilton (HAMA)</h3>
-                    <p>14 ítems que miden la gravedad de la ansiedad, administrado por clínico.</p>
-                    <div class="escala-meta">
-                        <span>📝 Administrado por clínico</span>
-                        <span>⏱ 15-20 minutos</span>
-                    </div>
-                    <button class="btn-escala" onclick="iniciarTest('hamilton')">Realizar test</button>
-                </div>
-                
-                <div class="escala-card">
-                    <h3>Mini-Examen del Estado Mental (MMSE)</h3>
-                    <p>Evaluación rápida del estado cognitivo, ampliamente utilizado.</p>
-                    <div class="escala-meta">
-                        <span>📝 Administrado por clínico</span>
-                        <span>⏱ 10-15 minutos</span>
-                    </div>
-                    <button class="btn-escala" onclick="iniciarTest('minimental')">Realizar test</button>
-                </div>
-                
-                <div class="escala-card">
-                    <h3>Escala de Estrés Percibido (PSS)</h3>
-                    <p>Evalúa el grado en que situaciones de la vida son percibidas como estresantes.</p>
-                    <div class="escala-meta">
-                        <span>📝 Autoadministrado</span>
-                        <span>⏱ 5 minutos</span>
-                    </div>
-                    <button class="btn-escala" onclick="alert('Próximamente disponible')">Realizar test</button>
-                </div>
-            </div>
-        </div>
+    <div class="section" id="escalas">
+        <h2>Escalas de Evaluación</h2>
+        <p class="section-description">Instrumentos estandarizados para la evaluación psicológica.</p>
+        
+        <div class="escalas-grid">
+            <div class="escala-card">
+                <h3>Escala de Depresión de Beck (BDI-II)</h3>
+                <p>21 ítems que evalúan la severidad de la depresión en adultos y adolescentes.</p>
+                <div class="escala-meta">
+                    <span>📝 Autoadministrado</span>
+                    <span>⏱ 10 minutos</span>
+                </div>
+                <button class="btn-escala" onclick="iniciarTest('beck')">Realizar test</button>
+            </div>
+            
+            <div class="escala-card">
+                <h3>Escala de Ansiedad de Hamilton (HAMA)</h3>
+                <p>14 ítems que miden la gravedad de la ansiedad, administrado por clínico.</p>
+                <div class="escala-meta">
+                    <span>📝 Administrado por clínico</span>
+                    <span>⏱ 15-20 minutos</span>
+                </div>
+                <button class="btn-escala" onclick="iniciarTest('hamilton')">Realizar test</button>
+            </div>
+            
+            <div class="escala-card">
+                <h3>Mini-Examen del Estado Mental (MMSE)</h3>
+                <p>Evaluación rápida del estado cognitivo, ampliamente utilizado.</p>
+                <div class="escala-meta">
+                    <span>📝 Administrado por clínico</span>
+                    <span>⏱ 10-15 minutos</span>
+                </div>
+                <button class="btn-escala" onclick="iniciarTest('minimental')">Realizar test</button>
+            </div>
+            
+            <div class="escala-card">
+                <h3>Escala de Estrés Percibido (PSS)</h3>
+                <p>Evalúa el grado en que situaciones de la vida son percibidas como estresantes.</p>
+                <div class="escala-meta">
+                    <span>📝 Autoadministrado</span>
+                    <span>⏱ 5 minutos</span>
+                </div>
+                <button class="btn-escala" onclick="alert('Próximamente disponible')">Realizar test</button>
+            </div>
+            </div>
+        </div>
 
-                <div class="section" id="calculadoras">
-            <h2>Tests Psicológicos</h2>
-            <p class="section-description">Evalúa diferentes aspectos psicológicos con nuestros tests validados. Selecciona un test para comenzar.</p>
-            
-            <div class="test-guide">
-                <h3>📋 Guía de uso</h3>
-                <ol>
-                    <li>Selecciona el test que deseas realizar</li>
-                    <li>Responde todas las preguntas con honestidad</li>
-                    <li>Al finalizar obtendrás un resultado interpretado</li>
-                    <li>Puedes usar estos resultados como referencia, pero recuerda que no sustituyen un diagnóstico profesional</li>
-                </ol>
-            </div>
-            
-            <div class="tests-grid">
-                <div class="test-card" data-test="beck">
-                    <div class="test-icon">📊</div>
-                    <h3>Escala de Depresión de Beck (BDI-II)</h3>
-                    <p>21 items que evalúan la severidad de la depresión en adultos y adolescentes a partir de 13 años.</p>
-                    <div class="test-meta">
-                        <span class="test-time">⏱ 10 min</span>
-                        <span class="test-questions">21 preguntas</span>
-                    </div>
-                    <button class="btn-test" onclick="iniciarTest('beck')">Comenzar test</button>
-                </div>
-                
-                <div class="test-card" data-test="hamilton">
-                    <div class="test-icon">😰</div>
-                    <h3>Escala de Ansiedad de Hamilton (HAMA)</h3>
-                    <p>14 items que miden la gravedad de la ansiedad, ampliamente utilizada en práctica clínica.</p>
+        <div class="section" id="calculadoras">
+            <h2>Tests Psicológicos</h2>
+            <p class="section-description">Evalúa diferentes aspectos psicológicos con nuestros tests validados. Selecciona un test para comenzar.</p>
+            
+            <div class="test-guide">
+                <h3>📋 Guía de uso</h3>
+                <ol>
+                    <li>Selecciona el test que deseas realizar</li>
+                    <li>Responde todas las preguntas con honestidad</li>
+                    <li>Al finalizar obtendrás un resultado interpretado</li>
+                    <li>Puedes usar estos resultados como referencia, pero recuerda que no sustituyen un diagnóstico profesional</li>
+                </ol>
+            </div>
+            
+            <div class="tests-grid">
+                <div class="test-card" data-test="beck">
+                    <div class="test-icon">📊</div>
+                    <h3>Escala de Depresión de Beck (BDI-II)</h3>
+                    <p>21 items que evalúan la severidad de la depresión en adultos y adolescentes a partir de 13 años.</p>
+                    <div class="test-meta">
+                        <span class="test-time">⏱ 10 min</span>
+                        <span class="test-questions">21 preguntas</span>
+                    </div>
+                    <button class="btn-test" onclick="iniciarTest('beck')">Comenzar test</button>
+                </div>
+                
+                <div class="test-card" data-test="hamilton">
+                    <div class="test-icon">😰</div>
+                    <h3>Escala de Ansiedad de Hamilton (HAMA)</h3>
+                    <p>14 items que miden la gravedad de la ansiedad, ampliamente utilizada en práctica clínica.</p>
                     <div class="test-meta">
                         <span class="test-time">⏱ 8 min</span>
                         <span class="test-questions">14 preguntas</span>
