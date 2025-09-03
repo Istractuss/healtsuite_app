@@ -580,49 +580,51 @@ function mostrarDetallesTeoria(teoriaId) {
     if (!teoria) return;
     // Crear modal si no existe
     let modal = document.getElementById('modal-teoria');
-            if (!modal) {
-                    modal = document.createElement('div');
-                    modal.id = 'modal-teoria';
-                    // El estilo principal ahora lo da el CSS
-                    modal.innerHTML = `
-                        <div id="modal-teoria-barra">Definición de Wikipedia <button id='cerrar-modal-teoria'>Cerrar</button></div>
-                        <div id="modal-teoria-body"></div>
-                    `;
-                    document.body.appendChild(modal);
-                    // Drag logic solo desde la barra
-                    let isDragging = false, offsetX = 0, offsetY = 0;
-                    const barra = modal.querySelector('#modal-teoria-barra');
-                    barra.addEventListener('mousedown', function(e) {
-                        isDragging = true;
-                        offsetX = e.clientX - modal.getBoundingClientRect().left;
-                        offsetY = e.clientY - modal.getBoundingClientRect().top;
-                        document.body.style.userSelect = 'none';
-                    });
-                    document.addEventListener('mousemove', function(e) {
-                        if (isDragging) {
-                            modal.style.left = (e.clientX - offsetX) + 'px';
-                            modal.style.top = (e.clientY - offsetY) + 'px';
-                            modal.style.right = '';
-                            modal.style.bottom = '';
-                            modal.style.transform = '';
-                        }
-                    });
-                    document.addEventListener('mouseup', function() {
-                        isDragging = false;
-                        document.body.style.userSelect = '';
-                    });
-                // Centrar al crear
-                modal.style.left = '50%';
-                modal.style.top = '120px';
-                modal.style.transform = 'translateX(-50%)';
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'modal-teoria';
+        modal.innerHTML = `
+            <div id="modal-teoria-barra">Definición de Wikipedia <button id='cerrar-modal-teoria'>Cerrar</button></div>
+            <div id="modal-teoria-body"></div>
+        `;
+        document.body.appendChild(modal);
+        // Drag logic solo desde la barra
+        let isDragging = false, offsetX = 0, offsetY = 0;
+        const barra = modal.querySelector('#modal-teoria-barra');
+        barra.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            offsetX = e.clientX - modal.getBoundingClientRect().left;
+            offsetY = e.clientY - modal.getBoundingClientRect().top;
+            document.body.style.userSelect = 'none';
+        });
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                modal.style.left = (e.clientX - offsetX) + 'px';
+                modal.style.top = (e.clientY - offsetY) + 'px';
+                modal.style.right = '';
+                modal.style.bottom = '';
+                modal.style.transform = '';
             }
-            document.getElementById('modal-teoria-body').innerHTML = `<h2 style='margin-top:0;'>${teoria.titulo}</h2><div id="teoria-wiki-content"><em>Cargando definición de Wikipedia...</em></div>`;
-            modal.classList.remove('hidden');
-            modal.style.display = 'block';
-            document.getElementById('cerrar-modal-teoria').onclick = function() {
-                    modal.classList.add('hidden');
-                    modal.style.display = '';
-            };
+        });
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+            document.body.style.userSelect = '';
+        });
+        // Delegar el evento de cerrar SOLO una vez al modal
+        modal.addEventListener('click', function(e) {
+            if (e.target && e.target.id === 'cerrar-modal-teoria') {
+                modal.classList.add('hidden');
+                modal.style.display = '';
+            }
+        });
+    }
+    // SIEMPRE centrar y mostrar al abrir
+    modal.style.left = '50%';
+    modal.style.top = '120px';
+    modal.style.transform = 'translateX(-50%)';
+    document.getElementById('modal-teoria-body').innerHTML = `<h2 style='margin-top:0;'>${teoria.titulo}</h2><div id="teoria-wiki-content"><em>Cargando definición de Wikipedia...</em></div>`;
+    modal.classList.remove('hidden');
+    modal.style.display = 'block';
     // Consultar Wikipedia
     fetch(`https://es.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(teoria.titulo)}`)
         .then(r => r.json())
