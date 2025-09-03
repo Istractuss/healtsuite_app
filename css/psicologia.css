@@ -1,3 +1,135 @@
+/* Los botones .btn-test y .btn-cerrar-test ya están definidos y se reutilizan aquí para el informe profesional */
+/* --- FORMULARIO DE ÍTEM TEST PROFESIONAL MODERNO --- */
+.form-item-test-prof {
+  background: #f8f9fa;
+  border-radius: 14px;
+  padding: 24px 18px 18px 18px;
+  margin: 18px 0 0 0;
+  box-shadow: 0 2px 8px rgba(78,84,200,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: stretch;
+}
+.form-opciones-test {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.opcion-test-radio {
+  font-size: 1.08rem;
+  color: var(--text);
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: background 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.opcion-test-radio input[type="radio"] {
+  accent-color: var(--primary);
+  margin-right: 8px;
+}
+.opcion-test-radio:hover {
+  background: #e6e9ff;
+}
+.test-modal-paciente, .test-modal-item {
+  color: var(--secondary);
+  font-size: 1.01rem;
+  margin-bottom: 6px;
+  text-align: center;
+}
+.test-modal-pregunta {
+  color: var(--primary);
+  font-size: 1.12rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.btn-cerrar-test {
+  background: #fff;
+  color: var(--primary);
+  border: 1.5px solid var(--primary-light);
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px 18px;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-cerrar-test:hover {
+  background: var(--primary-light);
+  color: #fff;
+}
+/* --- FORMULARIO DE DATOS PACIENTE TEST PROFESIONAL MODERNO --- */
+.form-datos-paciente {
+  background: #f8f9fa;
+  border-radius: 14px;
+  padding: 24px 18px 18px 18px;
+  margin: 18px 0 0 0;
+  box-shadow: 0 2px 8px rgba(78,84,200,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: stretch;
+}
+.form-group-test {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.form-group-test label {
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 1.08rem;
+}
+.input-test {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--primary-light);
+  border-radius: 8px;
+  font-size: 1.08rem;
+  background: #fff;
+  color: var(--text);
+  transition: border 0.2s;
+}
+.input-test:focus {
+  border: 2px solid var(--primary);
+  outline: none;
+}
+.form-btns-test {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  justify-content: flex-end;
+}
+.test-modal-title {
+  color: var(--primary);
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.test-modal-instrucciones {
+  color: var(--secondary);
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  text-align: center;
+}
+/* --- INFORME PROFESIONAL ADAPTABLE Y SCROLLABLE --- */
+.modal-test-profesional-body, .informe-profesional-scroll {
+  max-height: 70vh;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .modal-test-profesional-body, .informe-profesional-scroll {
+    max-height: 60vh;
+    padding: 10px 6vw 0 6vw;
+    font-size: 1.01rem;
+  }
+}
 :root {
   --primary: #4e54c8;
   --primary-light: #8f94fb;

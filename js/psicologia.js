@@ -118,7 +118,7 @@ function renderDatosPacienteTest(testId) {
         modal.style.zIndex = '9999';
         modal.style.minHeight = '120px';
         modal.style.overflowY = 'auto';
-        modal.innerHTML = `<div id="modal-test-profesional-body"></div><button id="cerrar-modal-test-profesional">Cerrar</button>`;
+        modal.innerHTML = `<div id="modal-test-profesional-body"></div>`;
         document.body.appendChild(modal);
     }
     document.getElementById('modal-test-profesional-body').innerHTML = `
@@ -164,10 +164,7 @@ function renderDatosPacienteTest(testId) {
         respuestasTestProfesional = Array(TESTS_PROFESIONALES[testId].items.length).fill().map(() => Math.floor(Math.random()*TESTS_PROFESIONALES[testId].items[0].opciones.length));
         renderInformeTestProfesional(testId);
     };
-    document.getElementById('cerrar-modal-test-profesional').onclick = function() {
-        modal.classList.add('hidden');
-        modal.style.display = '';
-    };
+    // El botón cerrar ahora solo está en los formularios de ítem y de informe, con clase btn-cerrar-test
 }
 
 function renderItemTestProfesional(testId, idx) {
@@ -241,9 +238,23 @@ function renderInformeTestProfesional(testId) {
             </ol>
             <h3>Puntuación total: ${total}</h3>
             <h3>Interpretación clínica: ${interpretacion}</h3>
-            <button onclick="renderDatosPacienteTest('${testId}')">Aplicar de nuevo</button>
+            <div class="form-btns-test">
+                <button onclick="renderDatosPacienteTest('${testId}')" class="btn-test">Aplicar de nuevo</button>
+                <button type="button" id="cerrar-modal-test-profesional-informe" class="btn-nav btn-cerrar-test">Cerrar</button>
+            </div>
         </div>
     `;
+    // Cerrar modal desde botón en informe
+    const cerrarBtn = document.getElementById('cerrar-modal-test-profesional-informe');
+    if (cerrarBtn) {
+        cerrarBtn.onclick = function() {
+            let modal = document.getElementById('modal-test-profesional');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.style.display = '';
+            }
+        };
+    }
 }
 
 // INTEGRACIÓN: Llama a esta función para iniciar el test profesional desde el apartado de TEST
