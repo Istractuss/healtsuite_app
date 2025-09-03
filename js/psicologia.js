@@ -122,21 +122,30 @@ function renderDatosPacienteTest(testId) {
         document.body.appendChild(modal);
     }
     document.getElementById('modal-test-profesional-body').innerHTML = `
-        <h2>${test.nombre}</h2>
-        <p>${test.instrucciones}</p>
+        <h2 class="test-modal-title">${test.nombre}</h2>
+        <p class="test-modal-instrucciones">${test.instrucciones}</p>
         <form id="form-datos-paciente-test" class="form-datos-paciente">
-            <label>Nombre:<br><input type="text" name="nombre" required></label><br>
-            <label>Edad:<br><input type="number" name="edad" min="5" max="120" required></label><br>
-            <label>Género:<br>
-                <select name="genero" required>
+            <div class="form-group-test">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" class="input-test" required>
+            </div>
+            <div class="form-group-test">
+                <label for="edad">Edad</label>
+                <input type="number" name="edad" id="edad" class="input-test" min="5" max="120" required>
+            </div>
+            <div class="form-group-test">
+                <label for="genero">Género</label>
+                <select name="genero" id="genero" class="input-test" required>
                     <option value="">Seleccione</option>
                     <option value="Femenino">Femenino</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Otro">Otro</option>
                 </select>
-            </label><br>
-            <button type="submit">Comenzar test</button>
-            <button type="button" id="btn-simular-test">Simular respuestas</button>
+            </div>
+            <div class="form-btns-test">
+                <button type="submit" class="btn-test">Comenzar test</button>
+                <button type="button" id="btn-simular-test" class="btn-nav">Simular respuestas</button>
+            </div>
         </form>
     `;
     modal.classList.remove('hidden');
@@ -169,17 +178,30 @@ function renderItemTestProfesional(testId, idx) {
     modal.classList.remove('hidden');
     modal.style.display = 'block';
     document.getElementById('modal-test-profesional-body').innerHTML = `
-        <h2>${test.nombre}</h2>
-        <p><b>Paciente:</b> ${datosPacienteTest.nombre} | <b>Edad:</b> ${datosPacienteTest.edad} | <b>Género:</b> ${datosPacienteTest.genero}</p>
-        <p><b>Ítem ${idx+1} de ${test.items.length}</b></p>
-        <p>${item.texto}</p>
-        <form id="form-item-test-prof">
+        <h2 class="test-modal-title">${test.nombre}</h2>
+        <p class="test-modal-paciente"><b>Paciente:</b> ${datosPacienteTest.nombre} | <b>Edad:</b> ${datosPacienteTest.edad} | <b>Género:</b> ${datosPacienteTest.genero}</p>
+        <p class="test-modal-item"><b>Ítem ${idx+1} de ${test.items.length}</b></p>
+        <p class="test-modal-pregunta">${item.texto}</p>
+        <form id="form-item-test-prof" class="form-item-test-prof">
+            <div class="form-opciones-test">
             ${item.opciones.map((op, i) => `
-                <label><input type="radio" name="opcion" value="${i}" required> ${op}</label><br>
+                <label class="opcion-test-radio"><input type="radio" name="opcion" value="${i}" required> ${op}</label>
             `).join('')}
-            <button type="submit">${idx === test.items.length-1 ? 'Finalizar' : 'Siguiente'}</button>
+            </div>
+            <div class="form-btns-test">
+                <button type="submit" class="btn-test">${idx === test.items.length-1 ? 'Finalizar' : 'Siguiente'}</button>
+                <button type="button" id="cerrar-modal-test-profesional" class="btn-nav btn-cerrar-test">Cerrar</button>
+            </div>
         </form>
     `;
+    // Cerrar modal desde botón
+    document.getElementById('cerrar-modal-test-profesional').onclick = function() {
+        let modal = document.getElementById('modal-test-profesional');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.style.display = '';
+        }
+    };
     document.getElementById('form-item-test-prof').onsubmit = function(e) {
         e.preventDefault();
         const val = parseInt(new FormData(e.target).get('opcion'), 10);
@@ -207,18 +229,20 @@ function renderInformeTestProfesional(testId) {
     modal.classList.remove('hidden');
     modal.style.display = 'block';
     document.getElementById('modal-test-profesional-body').innerHTML = `
-        <h2>Informe profesional: ${test.nombre}</h2>
-        <p><b>Paciente:</b> ${datosPacienteTest.nombre}</p>
-        <p><b>Edad:</b> ${datosPacienteTest.edad}</p>
-        <p><b>Género:</b> ${datosPacienteTest.genero}</p>
-        <p><b>Instrucciones:</b> ${test.instrucciones}</p>
-        <h3>Respuestas:</h3>
-        <ol>
-            ${test.items.map((item, i) => `<li>${item.texto}<br><b>Respuesta:</b> ${item.opciones[respuestasTestProfesional[i]] || '-'}</li>`).join('')}
-        </ol>
-        <h3>Puntuación total: ${total}</h3>
-        <h3>Interpretación clínica: ${interpretacion}</h3>
-        <button onclick="renderDatosPacienteTest('${testId}')">Aplicar de nuevo</button>
+        <div class="informe-profesional-scroll">
+            <h2>Informe profesional: ${test.nombre}</h2>
+            <p><b>Paciente:</b> ${datosPacienteTest.nombre}</p>
+            <p><b>Edad:</b> ${datosPacienteTest.edad}</p>
+            <p><b>Género:</b> ${datosPacienteTest.genero}</p>
+            <p><b>Instrucciones:</b> ${test.instrucciones}</p>
+            <h3>Respuestas:</h3>
+            <ol>
+                ${test.items.map((item, i) => `<li>${item.texto}<br><b>Respuesta:</b> ${item.opciones[respuestasTestProfesional[i]] || '-'}</li>`).join('')}
+            </ol>
+            <h3>Puntuación total: ${total}</h3>
+            <h3>Interpretación clínica: ${interpretacion}</h3>
+            <button onclick="renderDatosPacienteTest('${testId}')">Aplicar de nuevo</button>
+        </div>
     `;
 }
 
