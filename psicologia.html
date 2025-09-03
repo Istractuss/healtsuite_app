@@ -1,422 +1,370 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PsicoApp - Recursos para Estudiantes de Psicología</title>
-    <link rel="stylesheet" href="css/psicologia.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsicoApp - Recursos para Estudiantes de Psicología</title>
+    <link rel="stylesheet" href="css/psicologia.css">
+    <link rel="stylesheet" href="css/test-profesional.css">
+    <link rel="stylesheet" href="css/modal-teoria.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="index.html" class="btn-volver">
-                <span class="arrow-icon">←</span> Menú Principal
-            </a>
-            <div class="header-title">
-                <h1>PsicoApp</h1>
-                <p class="subtitle">Recursos para estudiantes de psicología</p>
-            </div>
-        </header>
+    <div class="container">
+        <header>
+            <a href="index.html" class="btn-volver">
+                <span class="arrow-icon">←</span> Menú Principal
+            </a>
+            <div class="header-title">
+                <h1>PsicoApp</h1>
+                <p class="subtitle">Recursos para estudiantes de psicología</p>
+            </div>
+        </header>
 
-        <div class="nav-tabs">
-            <div class="nav-tab active" data-target="teorias">Teorías</div>
-            <div class="nav-tab" data-target="trastornos">Trastornos</div>
-            <div class="nav-tab" data-target="escalas">Escalas</div>
-        <div class="nav-tab" data-target="calculadoras">Tests</div>
-        <div class="nav-tab" data-target="glosario">Glosario</div>
-        <div class="nav-tab" data-target="tecnicas">Técnicas</div>
-    </div>
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-target="teorias">Teorías</div>
+            <div class="nav-tab" data-target="trastornos">Trastornos</div>
+            <div class="nav-tab" data-target="escalas">Escalas</div>
+            <div class="nav-tab" data-target="calculadoras">Tests</div>
+            <div class="nav-tab" data-target="glosario">Glosario</div>
+            <div class="nav-tab" data-target="tecnicas">Técnicas</div>
+        </div>
+        <!-- SECCIÓN TEORÍAS -->
+        <div class="section active" id="teorias">
+            <h2>Teorías Psicológicas</h2>
+            <p class="section-description">Explora las principales corrientes teóricas de la psicología y sus representantes más influyentes.</p>
+            
+            <div class="teorias-grid">
+                <div class="teoria-card" data-teoria-id="psicoanalisis">
+                    <div class="teoria-icon">🛌</div>
+                    <h3>Psicoanálisis</h3>
+                    <p>Enfatiza la influencia del inconsciente en la conducta humana.</p>
+                    <button class="btn-teoria">Ver detalles</button>
+                </div>
+                <div class="teoria-card" data-teoria-id="conductismo">
+                    <div class="teoria-icon">🐭</div>
+                    <h3>Conductismo</h3>
+                    <p>Estudia la conducta observable y los mecanismos de aprendizaje.</p>
+                    <button class="btn-teoria">Ver detalles</button>
+                </div>
+                <div class="teoria-card" data-teoria-id="humanismo">
+                    <div class="teoria-icon">🌱</div>
+                    <h3>Humanismo</h3>
+                    <p>Centrado en el potencial humano y la autorrealización.</p>
+                    <button class="btn-teoria">Ver detalles</button>
+                </div>
+                <div class="teoria-card" data-teoria-id="cognitivismo">
+                    <div class="teoria-icon">🧠</div>
+                    <h3>Cognitivismo</h3>
+                    <p>Estudio de los procesos mentales como percepción y memoria.</p>
+                    <button class="btn-teoria">Ver detalles</button>
+                </div>
+            </div>
 
-    <div class="section active" id="teorias">
-        <h2>Teorías Psicológicas</h2>
-        <p class="section-description">Explora las principales corrientes teóricas de la psicología y sus representantes más influyentes.</p>
-        
-        <div class="teorias-grid" id="teorias-grid">
-            <div class="teoria-card" data-teoria-id="psicoanalisis">
-                <div class="teoria-icon">🛌</div>
-                <h3>Psicoanálisis</h3>
-                <p>Enfatiza la influencia del inconsciente en la conducta humana.</p>
-                <button class="btn-teoria" onclick="mostrarDetallesTeoria('psicoanalisis');">Ver detalles</button>
-            </div>
-            <div class="teoria-card" data-teoria-id="conductismo">
-                <div class="teoria-icon">🐭</div>
-                <h3>Conductismo</h3>
-                <p>Estudia la conducta observable y los mecanismos de aprendizaje.</p>
-                <button class="btn-teoria" onclick="mostrarDetallesTeoria('conductismo');">Ver detalles</button>
-            </div>
-            <div class="teoria-card" data-teoria-id="humanismo">
-                <div class="teoria-icon">🌱</div>
-                <h3>Humanismo</h3>
-                <p>Centrado en el potencial humano y la autorrealización.</p>
-                <button class="btn-teoria" onclick="mostrarDetallesTeoria('humanismo');">Ver detalles</button>
-            </div>
-            <div class="teoria-card" data-teoria-id="cognitivismo">
-                <div class="teoria-icon">🧠</div>
-                <h3>Cognitivismo</h3>
-                <p>Estudio de los procesos mentales como percepción y memoria.</p>
-                <button class="btn-teoria" onclick="mostrarDetallesTeoria('cognitivismo');">Ver detalles</button>
+            <div id="detalles-teoria" class="detalles-teoria hidden">
+                <div class="detalles-header">
+                    <h3 id="teoria-titulo">Psicoanálisis</h3>
+                    <button id="cerrar-detalles" class="btn-cerrar">✕</button>
+                </div>
+                <div id="teoria-contenido" class="detalles-contenido"></div>
             </div>
         </div>
 
-        <div id="detalles-teoria" class="detalles-teoria hidden">
-            <div class="detalles-header">
-                <h3 id="teoria-titulo">Psicoanálisis</h3>
-                <button class="btn-cerrar" onclick="ocultarDetallesTeoria()">✕</button>
-            </div>
-            <div id="teoria-contenido" class="detalles-contenido">
-            </div>
-        </div>
-    </div>
-
-    <div class="section" id="trastornos">
-        <h2>Trastornos Mentales (DSM-5)</h2>
-        <p class="section-description">Información sobre los principales trastornos mentales según el Manual Diagnóstico y Estadístico.</p>
-        
-        <div class="search-box">
-            <input type="text" id="buscar-trastorno" placeholder="Buscar trastorno..." onkeyup="filtrarTrastornos()">
-        </div>
-        
-        <div class="categorias-trastornos">
-            <div class="categoria-card">
-                <h3>Trastornos de Ansiedad</h3>
-                <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno de ansiedad generalizada DSM-5')">
-                    <h4>Trastorno de Ansiedad Generalizada</h4>
-                    <p>Ansiedad y preocupación excesivas que ocurren durante más días de los que faltan durante al menos 6 meses.</p>
-                </div>
-                <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno de pánico DSM-5')">
-                    <h4>Trastorno de Pánico</h4>
-                    <p>Ataques de pánico inesperados y recurrentes seguidos de preocupación persistente.</p>
-                </div>
-                <div class="trastorno-item" onclick="mostrarExplicacion('Fobias específicas en psicología')">
-                    <h4>Fobias Específicas</h4>
-                    <p>Miedo o ansiedad intensa por un objeto o situación específica.</p>
-                </div>
+        <!-- SECCIÓN TRASTORNOS -->
+        <div class="section" id="trastornos">
+            <h2>Trastornos Mentales (DSM-5)</h2>
+            <p class="section-description">Información sobre los principales trastornos mentales según el Manual Diagnóstico y Estadístico.</p>
+            
+            <div class="search-box">
+                <input type="text" id="buscar-trastorno" placeholder="Buscar trastorno...">
             </div>
             
-            <div class="categoria-card">
-                <h3>Trastornos del Estado de Ánimo</h3>
-                <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno depresivo mayor criterios diagnósticos')">
-                    <h4>Trastorno Depresivo Mayor</h4>
-                    <p>Estado de ánimo deprimido la mayor parte del día, casi todos los días.</p>
+            <div class="categorias-trastornos">
+                <div class="categoria-card">
+                    <h3>Trastornos de Ansiedad</h3>
+                    <div class="trastorno-item" data-termino="Trastorno de ansiedad generalizada DSM-5">
+                        <h4>Trastorno de Ansiedad Generalizada</h4>
+                        <p>Ansiedad y preocupación excesivas durante más días de los que faltan durante al menos 6 meses.</p>
+                    </div>
+                    <div class="trastorno-item" data-termino="Trastorno de pánico DSM-5">
+                        <h4>Trastorno de Pánico</h4>
+                        <p>Ataques de pánico inesperados y recurrentes seguidos de preocupación persistente.</p>
+                    </div>
+                    <div class="trastorno-item" data-termino="Fobias específicas en psicología">
+                        <h4>Fobias Específicas</h4>
+                        <p>Miedo o ansiedad intensa por un objeto o situación específica.</p>
+                    </div>
                 </div>
-                <div class="trastorno-item" onclick="mostrarExplicacion('Trastorno bipolar tipos y características')">
-                    <h4>Trastorno Bipolar</h4>
-                    <p>Alternancia entre episodios maníacos/hiplománicos y episodios depresivos.</p>
+                
+                <div class="categoria-card">
+                    <h3>Trastornos del Estado de Ánimo</h3>
+                    <div class="trastorno-item" data-termino="Trastorno depresivo mayor criterios diagnósticos">
+                        <h4>Trastorno Depresivo Mayor</h4>
+                        <p>Estado de ánimo deprimido la mayor parte del día, casi todos los días.</p>
+                    </div>
+                    <div class="trastorno-item" data-termino="Trastorno bipolar tipos y características">
+                        <h4>Trastorno Bipolar</h4>
+                        <p>Alternancia entre episodios maníacos/hiplománicos y depresivos.</p>
+                    </div>
+                    <div class="trastorno-item" data-termino="Distimia o trastorno depresivo persistente">
+                        <h4>Distimia</h4>
+                        <p>Estado de ánimo crónicamente depresivo la mayor parte del día durante al menos 2 años.</p>
+                    </div>
                 </div>
-                <div class="trastorno-item" onclick="mostrarExplicacion('Distimia o trastorno depresivo persistente')">
-                <h4>Distimia</h4>
-                <p>Estado de ánimo crónicamente depresivo la mayor parte del día durante al menos 2 años.</p>
-            </div>
-        </div>
-        
-        <div class="categoria-card">
-            <h3>Trastornos de Personalidad</h3>
-            <div class="trastorno-item" onclick="mostrarExplicacion('Trastornos de personalidad grupo A DSM-5')">
-                <h4>Grupo A (Excéntricos)</h4>
-                <p>Paranoide, Esquizoide, Esquizotípico - Patrones de comportamiento excéntrico o extraño.</p>
-            </div>
-            <div class="trastorno-item" onclick="mostrarExplicacion('Trastornos de personalidad grupo B DSM-5')">
-                <h4>Grupo B (Dramáticos)</h4>
-                <p>Antisocial, Límite, Histriónico, Narcisista - Patrones emocionales e impredecibles.</p>
-            </div>
-            <div class="trastorno-item" onclick="mostrarExplicacion('Trastornos de personalidad grupo C DSM-5')">
-                <h4>Grupo C (Ansiosos)</h4>
-                <p>Evitativo, Dependiente, Obsesivo-Compulsivo - Patrones de ansiedad y temor.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="section" id="escalas">
-        <h2>Escalas de Evaluación</h2>
-        <p class="section-description">Instrumentos estandarizados para la evaluación psicológica.</p>
-        
-        <div class="escalas-grid">
-            <div class="escala-card">
-                <h3>Escala de Depresión de Beck (BDI-II)</h3>
-                <p>21 ítems que evalúan la severidad de la depresión en adultos y adolescentes.</p>
-                <div class="escala-meta">
-                    <span>📝 Autoadministrado</span>
-                    <span>⏱ 10 minutos</span>
+                <div class="categoria-card">
+                    <h3>Trastornos de Personalidad</h3>
+                    <div class="trastorno-item" data-termino="Trastornos de personalidad grupo A DSM-5">
+                        <h4>Grupo A (Excéntricos)</h4>
+                        <p>Paranoide, Esquizoide, Esquizotípico - Patrones de comportamiento excéntrico o extraño.</p>
+                    </div>
+                    <div class="trastorno-item" data-termino="Trastornos de personalidad grupo B DSM-5">
+                        <h4>Grupo B (Dramáticos)</h4>
+                        <p>Antisocial, Límite, Histriónico, Narcisista - Patrones emocionales e impredecibles.</p>
+                    </div>
+                    <div class="trastorno-item" data-termino="Trastornos de personalidad grupo C DSM-5">
+                        <h4>Grupo C (Ansiosos)</h4>
+                        <p>Evitativo, Dependiente, Obsesivo-Compulsivo - Patrones de ansiedad y temor.</p>
+                    </div>
                 </div>
-                <button class="btn-escala" onclick="iniciarTest('beck')">Realizar test</button>
-            </div>
-            
-            <div class="escala-card">
-                <h3>Escala de Ansiedad de Hamilton (HAMA)</h3>
-                <p>14 ítems que miden la gravedad de la ansiedad, administrado por clínico.</p>
-                <div class="escala-meta">
-                    <span>📝 Administrado por clínico</span>
-                    <span>⏱ 15-20 minutos</span>
-                </div>
-                <button class="btn-escala" onclick="iniciarTest('hamilton')">Realizar test</button>
-            </div>
-            
-            <div class="escala-card">
-                <h3>Mini-Examen del Estado Mental (MMSE)</h3>
-                <p>Evaluación rápida del estado cognitivo, ampliamente utilizado.</p>
-                <div class="escala-meta">
-                    <span>📝 Administrado por clínico</span>
-                    <span>⏱ 10-15 minutos</span>
-                </div>
-                <button class="btn-escala" onclick="iniciarTest('minimental')">Realizar test</button>
-            </div>
-            
-            <div class="escala-card">
-                <h3>Escala de Estrés Percibido (PSS)</h3>
-                <p>Evalúa el grado en que situaciones de la vida son percibidas como estresantes.</p>
-                <div class="escala-meta">
-                    <span>📝 Autoadministrado</span>
-                    <span>⏱ 5 minutos</span>
-                </div>
-                <button class="btn-escala" onclick="alert('Próximamente disponible')">Realizar test</button>
-            </div>
             </div>
         </div>
 
+        <!-- SECCIÓN ESCALAS -->
+        <div class="section" id="escalas">
+            <h2>Escalas de Evaluación</h2>
+            <p class="section-description">Instrumentos estandarizados para la evaluación psicológica.</p>
+            
+            <div class="escalas-grid">
+                <div class="escala-card">
+                    <h3>Escala de Depresión de Beck (BDI-II)</h3>
+                    <p>21 ítems que evalúan la severidad de la depresión en adultos y adolescentes.</p>
+                    <div class="escala-meta">
+                        <span>📝 Autoadministrado</span>
+                        <span>⏱ 10 minutos</span>
+                    </div>
+                    <button class="btn-escala" data-test="beck">Realizar test</button>
+                </div>
+                
+                <div class="escala-card">
+                    <h3>Escala de Ansiedad de Hamilton (HAMA)</h3>
+                    <p>14 ítems que miden la gravedad de la ansiedad, administrado por clínico.</p>
+                    <div class="escala-meta">
+                        <span>📝 Administrado por clínico</span>
+                        <span>⏱ 15-20 minutos</span>
+                    </div>
+                    <button class="btn-escala" data-test="hamilton">Realizar test</button>
+                </div>
+                
+                <div class="escala-card">
+                    <h3>Mini-Examen del Estado Mental (MMSE)</h3>
+                    <p>Evaluación rápida del estado cognitivo, ampliamente utilizado.</p>
+                    <div class="escala-meta">
+                        <span>📝 Administrado por clínico</span>
+                        <span>⏱ 10-15 minutos</span>
+                    </div>
+                    <button class="btn-escala" data-test="minimental">Realizar test</button>
+                </div>
+                
+                <div class="escala-card">
+                    <h3>Escala de Estrés Percibido (PSS)</h3>
+                    <p>Evalúa el grado en que situaciones de la vida son percibidas como estresantes.</p>
+                    <div class="escala-meta">
+                        <span>📝 Autoadministrado</span>
+                        <span>⏱ 5 minutos</span>
+                    </div>
+                    <button class="btn-escala" data-test="pss">Realizar test</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN TESTS PSICOLÓGICOS -->
         <div class="section" id="calculadoras">
             <h2>Tests Psicológicos</h2>
             <p class="section-description">Evalúa diferentes aspectos psicológicos con nuestros tests validados. Selecciona un test para comenzar.</p>
-            
-            <div class="test-guide">
-                <h3>📋 Guía de uso</h3>
-                <ol>
-                    <li>Selecciona el test que deseas realizar</li>
-                    <li>Responde todas las preguntas con honestidad</li>
-                    <li>Al finalizar obtendrás un resultado interpretado</li>
-                    <li>Puedes usar estos resultados como referencia, pero recuerda que no sustituyen un diagnóstico profesional</li>
-                </ol>
-            </div>
             
             <div class="tests-grid">
                 <div class="test-card" data-test="beck">
                     <div class="test-icon">📊</div>
                     <h3>Escala de Depresión de Beck (BDI-II)</h3>
-                    <p>21 items que evalúan la severidad de la depresión en adultos y adolescentes a partir de 13 años.</p>
+                    <p>21 ítems que evalúan la severidad de la depresión en adultos y adolescentes a partir de 13 años.</p>
                     <div class="test-meta">
                         <span class="test-time">⏱ 10 min</span>
                         <span class="test-questions">21 preguntas</span>
                     </div>
-                    <button class="btn-test" onclick="iniciarTest('beck')">Comenzar test</button>
+                    <button class="btn-test">Comenzar test</button>
                 </div>
                 
                 <div class="test-card" data-test="hamilton">
                     <div class="test-icon">😰</div>
                     <h3>Escala de Ansiedad de Hamilton (HAMA)</h3>
-                    <p>14 items que miden la gravedad de la ansiedad, ampliamente utilizada en práctica clínica.</p>
-                    <div class="test-meta">
-                        <span class="test-time">⏱ 8 min</span>
-                        <span class="test-questions">14 preguntas</span>
-                    </div>
-                    <button class="btn-test" onclick="iniciarTest('hamilton')">Comenzar test</button>
-                </div>
-                
-                <div class="test-card" data-test="minimental">
-                    <div class="test-icon">🧠</div>
-                    <h3>Mini-Examen del Estado Mental (MMSE)</h3>
-                    <p>Evaluación rápida del estado cognitivo, útil para detectar deterioro cognitivo.</p>
-                    <div class="test-meta">
-                        <span class="test-time">⏱ 15 min</span>
-                        <span class="test-questions">30 preguntas</span>
-                    </div>
-                    <button class="btn-test" onclick="iniciarTest('minimental')">Comenzar test</button>
-                </div>
-            </div>
+                    <p>14 ítems que miden la gravedad de la ansiedad, ampliamente utilizada en práctica clínica.</p>
+                    <div class="test-meta">
+                        <span class="test-time">⏱ 8 min</span>
+                        <span class="test-questions">14 preguntas</span>
+                    </div>
+                    <button class="btn-test">Comenzar test</button>
+                </div>
+                
+                <div class="test-card" data-test="minimental">
+                    <div class="test-icon">🧠</div>
+                    <h3>Mini-Examen del Estado Mental (MMSE)</h3>
+                    <p>Evaluación rápida del estado cognitivo, útil para detectar deterioro cognitivo.</p>
+                    <div class="test-meta">
+                        <span class="test-time">⏱ 15 min</span>
+                        <span class="test-questions">30 preguntas</span>
+                    </div>
+                    <button class="btn-test">Comenzar test</button>
+                </div>
+            </div>
+            
+            <!-- Contenedor del test -->
+            <div id="test-container" class="test-container hidden">
+                <div class="test-header">
+                    <h3 id="test-title"></h3>
+                    <div class="test-progress">
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <span id="progress-text" class="progress-text"></span>
+                    </div>
+                </div>
+                
+                <div id="test-question" class="test-question"></div>
+                
+                <div class="test-navigation">
+                    <button id="btn-prev" class="btn-nav hidden">Anterior</button>
+                    <button id="btn-next" class="btn-nav">Siguiente</button>
+                    <button id="btn-finish" class="btn-nav btn-primary hidden">Finalizar</button>
+                </div>
+            </div>
+            
+            <!-- Resultados del test -->
+            <div id="test-results" class="test-results hidden">
+                <h3>Resultados del Test</h3>
+                <div class="score-container">
+                    <div class="score-circle">
+                        <span id="score-value" class="score-value">0</span>
+                        <span id="score-total" class="score-total">/ 0</span>
+                    </div>
+                    <div class="score-interpretation">
+                        <h4 id="score-interpretation">Interpretación</h4>
+                        <p id="results-description">Descripción de los resultados</p>
+                    </div>
+                </div>
+                <button id="btn-restart" class="btn-primary">Realizar otro test</button>
+                <button id="btn-back-to-tests" class="btn-secondary">Volver al listado</button>
+            </div>
+        </div>
+        <!-- SECCIÓN GLOSARIO -->
+        <div class="section" id="glosario">
+            <h2>Glosario de Términos Psicológicos</h2>
+            <p class="section-description">Diccionario de conceptos y terminología especializada en psicología.</p>
+            
+            <div class="search-box">
+                <input type="text" id="buscar-termino" placeholder="Buscar término...">
+            </div>
+            
+            <div class="glosario-grid">
+                <!-- Los términos del glosario se generan dinámicamente desde JS -->
+            </div>
+            
+            <div class="pagination">
+                <!-- Los botones de paginación se generan dinámicamente desde JS -->
+            </div>
+        </div>
 
-                        <div id="test-container" class="test-container hidden">
-                <div class="test-header">
-                    <h3 id="test-title">Test de Depresión de Beck</h3>
-                    <div class="test-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progress-fill"></div>
-                        </div>
-                        <span id="progress-text">Pregunta 1 de 21</span>
-                    </div>
-                    <button class="btn-test-exit" onclick="salirTest()">✕</button>
-                </div>
-                
-                <div class="test-content">
-                    <div id="test-question" class="test-question">
-                                            </div>
-                    
-                    <div class="test-navigation">
-                        <button class="btn-nav" id="btn-prev" onclick="preguntaAnterior()">Anterior</button>
-                        <button class="btn-nav btn-primary" id="btn-next" onclick="preguntaSiguiente()">Siguiente</button>
-                        <button class="btn-nav btn-finish hidden" id="btn-finish" onclick="finalizarTest()">Finalizar test</button>
-                    </div>
-                </div>
-            </div>
+        <!-- SECCIÓN TÉCNICAS -->
+        <div class="section" id="tecnicas">
+            <h2>Técnicas Terapéuticas</h2>
+            <p class="section-description">Herramientas y métodos utilizados en intervención psicológica.</p>
+            
+            <div class="tecnicas-tabs">
+                <button class="tecnica-tab active" data-tecnica="entrevista">Entrevista Clínica</button>
+                <button class="tecnica-tab" data-tecnica="evaluacion">Evaluación</button>
+                <button class="tecnica-tab" data-tecnica="intervencion">Intervención</button>
+            </div>
+            
+            <div class="tecnica-contenido active" id="entrevista">
+                <div class="tecnica-card">
+                    <h3>Entrevista Inicial</h3>
+                    <p>Proceso estructurado para recopilar información relevante del paciente.</p>
+                    <ul>
+                        <li>Establecimiento de rapport y alianza terapéutica</li>
+                        <li>Recopilación de datos demográficos y motivo de consulta</li>
+                        <li>Historia del problema actual y antecedentes relevantes</li>
+                        <li>Evaluación de recursos y redes de apoyo</li>
+                    </ul>
+                </div>
+                
+                <div class="tecnica-card">
+                    <h3>Tipos de Preguntas</h3>
+                    <p>Diferentes formas de obtener información durante la entrevista.</p>
+                    <div class="preguntas-grid">
+                        <div class="pregunta-tipo" data-termino="Preguntas abiertas en entrevista clínica">
+                            <h4>Abiertas</h4>
+                            <p>¿Cómo describiría su problema?</p>
+                            <span>Permiten respuestas elaboradas</span>
+                        </div>
+                        <div class="pregunta-tipo" data-termino="Preguntas cerradas en evaluación psicológica">
+                            <h4>Cerradas</h4>
+                            <p>¿Duerme bien por las noches?</p>
+                            <span>Respuestas específicas (sí/no)</span>
+                        </div>
+                        <div class="pregunta-tipo" data-termino="Preguntas circulares en terapia sistémica">
+                            <h4>Circulares</h4>
+                            <p>¿Qué cree su esposa que usted debería hacer?</p>
+                            <span>Exploran relaciones y perspectivas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tecnica-contenido" id="evaluacion">
+                <div class="tecnica-card">
+                    <h3>Pruebas Psicométricas</h3>
+                    <p>Instrumentos estandarizados para medir constructos psicológicos.</p>
+                    <ul>
+                        <li>Tests de inteligencia y capacidades cognitivas</li>
+                        <li>Pruebas de personalidad y características individuales</li>
+                        <li>Escalas de evaluación sintomática</li>
+                        <li>Tests neuropsicológicos</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tecnica-contenido" id="intervencion">
+                <div class="tecnica-card">
+                    <h3>Técnicas de Intervención</h3>
+                    <p>Estrategias terapéuticas basadas en diferentes enfoques.</p>
+                    <ul>
+                        <li>Técnicas cognitivo-conductuales (reestructuración cognitiva, exposición)</li>
+                        <li>Técnicas humanistas (escucha activa, reflexión)</li>
+                        <li>Técnicas psicodinámicas (asociación libre, análisis de sueños)</li>
+                        <li>Técnicas sistémicas (genograma, preguntas circulares)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-                        <div id="test-results" class="test-results hidden">
-                <div class="results-header">
-                    <h3>Resultados del test</h3>
-                    <button class="btn-return" onclick="volverAlListado()">Volver a tests</button>
-                </div>
-                
-                <div class="results-content">
-                    <div class="score-container">
-                        <div class="score-circle">
-                            <span id="score-value">0</span>
-                            <span id="score-total">/63</span>
-                        </div>
-                        <h4 id="score-interpretation">Depresión mínima</h4>
-                    </div>
-                    
-                    <div class="results-details">
-                        <h4>Interpretación:</h4>
-                        <p id="results-description">Según la escala de Beck, tu puntuación indica depresión mínima. Esto sugiere que no presentas síntomas significativos de depresión en este momento.</p>
-                        
-                        <div class="results-guide">
-                            <h4>📋 Guía de aplicación en contexto clínico:</h4>
-                            <ul>
-                                <li>Este test es una herramienta de screening, no un diagnóstico definitivo</li>
-                                <li>Considera el contexto y historial del paciente al interpretar resultados</li>
-                                <li>Para puntuaciones moderadas o altas, recomendar evaluación profesional</li>
-                                <li>Documenta siempre los resultados en el expediente clínico</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- CHATBOT -->
+        <div id="chatbot-container" class="chatbot-container hidden">
+            <div class="chatbot-header">
+                <h4>Asistente de Psicología</h4>
+                <button id="chatbot-close" class="btn-chatbot-close">✕</button>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="message bot-message">
+                    <p>Hola, soy tu asistente de psicología. ¿En qué término necesitas ayuda?</p>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta...">
+                <button id="chatbot-send">Enviar</button>
+            </div>
+        </div>
+        <button id="chatbot-toggle" class="chatbot-toggle">💬</button>
 
-                <div class="section" id="glosario">
-            <h2>Glosario de Términos Psicológicos</h2>
-            <p class="section-description">Diccionario de conceptos and terminología especializada en psicología.</p>
-            
-            <div class="search-box">
-                <input type="text" id="buscar-termino" placeholder="Buscar término..." onkeyup="filtrarTerminos()">
-            </div>
-            
-            <div class="glosario-grid">
-                <div class="termino-card" onclick="mostrarExplicacion('Acomodación en la teoría de Piaget')">
-                    <h3>Acomodación (Piaget)</h3>
-                    <p>Proceso de modificar esquemas existentes o crear nuevos para adaptarse a nueva información.</p>
-                </div>
-                
-                <div class="termino-card" onclick="mostrarExplicacion('Afasia en neuropsicología')">
-                    <h3>Afasia</h3>
-                    <p>Pérdida o deterioro de la capacidad del lenguaje debido a una lesión cerebral.</p>
-                </div>
-                
-                <div class="termino-card" onclick="mostrarExplicacion('Condicionamiento operante de Skinner')">
-                    <h3>Condicionamiento Operante</h3>
-                    <p>Aprendizaje mediante el cual una respuesta voluntaria se fortalece o debilita según sus consecuencias.</p>
-                </div>
-                
-                <div class="termino-card" onclick="mostrarExplicacion('Disonancia cognitiva de Festinger')">
-                    <h3>Disonancia Cognitiva</h3>
-                    <p>Estado de tensión que se produce cuando una persona mantiene dos cogniciones inconsistentes.</p>
-                </div>
-                
-                <div class="termino-card" onclick="mostrarExplicacion('Empatía en psicología')">
-                    <h3>Empatía</h3>
-                    <p>Capacidad de comprender y compartir los sentimientos de otra persona.</p>
-                </div>
-                
-                <div class="termino-card" onclick="mostrarExplicacion('Neuroplasticidad cerebral')">
-                    <h3>Neuroplasticidad</h3>
-                    <p>Capacidad del sistema nervioso para cambiar y adaptarse como resultado de la experiencia.</p>
-                </div>
-            </div>
-            
-            <div class="pagination">
-                <button class="btn-pagination">1</button>
-                <button class="btn-pagination">2</button>
-                <button class="btn-pagination">3</button>
-                <button class="btn-pagination">Siguiente →</button>
-            </div>
-        </div>
-
-                <div class="section" id="tecnicas">
-            <h2>Técnicas Terapéuticas</h2>
-            <p class="section-description">Herramientas y métodos utilizados en intervención psicológica.</p>
-            
-            <div class="tecnicas-tabs">
-                <button class="tecnica-tab active" data-tecnica="entrevista">Entrevista Clínica</button>
-                <button class="tecnica-tab" data-tecnica="evaluacion">Evaluación</button>
-                <button class="tecnica-tab" data-tecnica="intervencion">Intervención</button>
-            </div>
-            
-            <div class="tecnica-contenido active" id="entrevista">
-                <div class="tecnica-card">
-                    <h3>Entrevista Inicial</h3>
-                    <p>Proceso estructurado para recopilar información relevante del paciente.</p>
-                    <ul>
-                        <li>Establecimiento de rapport y alianza terapéutica</li>
-                        <li>Recopilación de datos demográficos y motivo de consulta</li>
-                        <li>Historia del problema actual y antecedentes relevantes</li>
-                        <li>Evaluación de recursos y redes de apoyo</li>
-                    </ul>
-                </div>
-                
-                <div class="tecnica-card">
-                    <h3>Tipos de Preguntas</h3>
-                    <p>Diferentes formas de obtener información durante la entrevista.</p>
-                    <div class="preguntas-grid">
-                        <div class="pregunta-tipo" onclick="mostrarExplicacion('Preguntas abiertas en entrevista clínica')">
-                            <h4>Abiertas</h4>
-                            <p>¿Cómo describiría su problema?</p>
-                            <span>Permiten respuestas elaboradas</span>
-                        </div>
-                        <div class="pregunta-tipo" onclick="mostrarExplicacion('Preguntas cerradas en evaluación psicológica')">
-                            <h4>Cerradas</h4>
-                            <p>¿Duerme bien por las noches?</p>
-                            <span>Respuestas específicas (sí/no)</span>
-                        </div>
-                        <div class="pregunta-tipo" onclick="mostrarExplicacion('Preguntas circulares en terapia sistémica')">
-                            <h4>Circulares</h4>
-                            <p>¿Qué cree su esposa que usted debería hacer?</p>
-                            <span>Exploran relaciones y perspectivas</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tecnica-contenido" id="evaluacion">
-                <div class="tecnica-card">
-                    <h3>Pruebas Psicométricas</h3>
-                    <p>Instrumentos estandarizados para medir constructos psicológicos.</p>
-                    <ul>
-                        <li>Tests de inteligencia y capacidades cognitivas</li>
-                        <li>Pruebas de personalidad y características individuales</li>
-                        <li>Escalas de evaluación sintomática</li>
-                        <li>Tests neuropsicológicos</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="tecnica-contenido" id="intervencion">
-                <div class="tecnica-card">
-                    <h3>Técnicas de Intervención</h3>
-                    <p>Estrategias terapéuticas basadas en diferentes enfoques.</p>
-                    <ul>
-                        <li>Técnicas cognitivo-conductuales (reestructuración cognitiva, exposición)</li>
-                        <li>Técnicas humanistas (escucha activa, reflexión)</li>
-                        <li>Técnicas psicodinámicas (asociación libre, análisis de sueños)</li>
-                        <li>Técnicas sistémicas (genograma, preguntas circulares)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        <div id="chatbot-container" class="chatbot-container hidden">
-        <div class="chatbot-header">
-            <h4>Asistente de Psicología</h4>
-            <button class="btn-chatbot-close" onclick="cerrarChatbot()">✕</button>
-        </div>
-        <div id="chatbot-messages" class="chatbot-messages">
-            <div class="message bot-message">
-                <p>Hola, soy tu asistente de psicología. ¿En qué término necesitas ayuda?</p>
-            </div>
-        </div>
-        <div class="chatbot-input">
-            <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta...">
-            <button id="chatbot-send" onclick="enviarPregunta()">Enviar</button>
-        </div>
-    </div>
-    <button id="chatbot-toggle" class="chatbot-toggle" onclick="abrirChatbot()">💬</button>
-
-    <script src="js/psicologia.js"></script>
+        <!-- SCRIPT PRINCIPAL -->
+        <script type="module" src="js/psicologia.js"></script>
+    </div>
 </body>
 </html>
