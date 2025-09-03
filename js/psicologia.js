@@ -1069,16 +1069,22 @@ function mostrarPreguntaBDI(indice) {
     const item = bdiTest.items[indice];
     const contenedor = document.getElementById('test-container');
     contenedor.innerHTML = `
-        <h2>${bdiTest.nombre}</h2>
-        <p><b>Pregunta ${indice + 1} de ${bdiTest.items.length}</b></p>
-        <p>${item.texto}</p>
-        <form id="form-bdi">
-            ${item.opciones.map((op, i) => `
-                <label><input type="radio" name="opcion" value="${i}" ${bdiRespuestas[indice] == i ? 'checked' : ''}> ${op}</label><br>
-            `).join('')}
-        </form>
-        <button onclick="guardarRespuestaBDI(${indice})">Siguiente</button>
-        ${indice > 0 ? `<button onclick="mostrarPreguntaBDI(${indice - 1})">Anterior</button>` : ''}
+        <div class="bdi-pregunta-scroll">
+            <h2 class="test-modal-title">${bdiTest.nombre}</h2>
+            <p class="test-modal-item"><b>Pregunta ${indice + 1} de ${bdiTest.items.length}</b></p>
+            <p class="test-modal-pregunta">${item.texto}</p>
+            <form id="form-bdi" class="form-item-test-prof">
+                <div class="form-opciones-test">
+                ${item.opciones.map((op, i) => `
+                    <label class="opcion-test-radio"><input type="radio" name="opcion" value="${i}" ${bdiRespuestas[indice] == i ? 'checked' : ''}> ${op}</label>
+                `).join('')}
+                </div>
+                <div class="form-btns-test">
+                    <button type="button" onclick="mostrarPreguntaBDI(${indice - 1})" class="btn-cerrar-test" ${indice === 0 ? 'style="display:none"' : ''}>Anterior</button>
+                    <button type="button" onclick="guardarRespuestaBDI(${indice})" class="btn-test">${indice === bdiTest.items.length-1 ? 'Finalizar' : 'Siguiente'}</button>
+                </div>
+            </form>
+        </div>
     `;
 }
 
