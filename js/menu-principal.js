@@ -12,6 +12,8 @@ function cargarApp(app) {
             window.location.href = 'enfermeria.html';
         } else if (app === 'psicologia') {
             window.location.href = 'psicologia.html';
+        } else if (app === 'metodos-numericos') {
+            window.location.href = 'metodos-numericos.html';
         }
     }, 500);
 }
