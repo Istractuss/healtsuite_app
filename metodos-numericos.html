@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métodos Numéricos - Bisección</title>
+    <link rel="stylesheet" href="css/metodos-numericos.css">
+</head>
+<body class="body-metodos-numericos">
+    <header class="metodos-header">
+        <h1>Métodos Numéricos</h1>
+        <h2>Método de Bisección</h2>
+    </header>
+    <main>
+        <div class="metodos-card">
+            <form id="form-biseccion">
+                <label>Función f(x):
+                    <input type="text" id="biseccion-funcion" placeholder="Ej: x^3 - x - 2" required>
+                </label><br><br>
+                <label>a (mínimo):
+                    <input type="number" id="biseccion-a" step="any" required>
+                </label><br><br>
+                <label>b (máximo):
+                    <input type="number" id="biseccion-b" step="any" required>
+                </label><br><br>
+                <label>Error tolerado (ε):
+                    <input type="number" id="biseccion-error" step="any" min="0" value="0.0001" required>
+                </label><br><br>
+                <label>Máximo de iteraciones:
+                    <input type="number" id="biseccion-maxiter" min="1" max="500" value="100" required>
+                </label><br><br>
+                <button type="submit" class="btn-biseccion">Calcular</button>
+            </form>
+            <button id="btn-volver-menu" class="btn-biseccion" style="margin-top:20px;">Volver al menú principal</button>
+        </div>
+        <div id="biseccion-resultado" class="metodos-card" style="display:none;"></div>
+    </main>
+    <script src="js/metodos-numericos.js"></script>
+</body>
+</html>

@@ -613,6 +613,9 @@ function switchSection(activeTab, allTabs, targetId, sectionSelector = '.section
 function mostrarDetallesTeoria(teoriaId) {
     const teoria = data.teorias[teoriaId];
     if (!teoria) return;
+    // OCULTAR panel fijo de detalles si está visible
+    const panelDetalles = document.getElementById('detalles-teoria');
+    if (panelDetalles) panelDetalles.classList.add('hidden');
     // Crear modal si no existe
     let modal = document.getElementById('modal-teoria');
     if (!modal) {

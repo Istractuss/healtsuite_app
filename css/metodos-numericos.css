@@ -1,0 +1,68 @@
+/* metodos-numericos.css */
+/* Estilos base para la sección de Métodos Numéricos */
+
+.body-metodos-numericos {
+  background: #f6f8fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.metodos-header {
+  text-align: center;
+  color: #2d3a4a;
+  margin-top: 32px;
+  margin-bottom: 18px;
+}
+
+.metodos-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(78,84,200,0.08);
+  padding: 24px 18px;
+  margin: 18px auto;
+  max-width: 480px;
+}
+
+.metodos-lista {
+  list-style: disc inside;
+  color: #3a3a3a;
+  font-size: 1.08rem;
+  margin-top: 12px;
+}
+
+/* --- TABLA DE BISECCIÓN Y BOTÓN --- */
+.biseccion-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+  font-size: 0.98rem;
+}
+.biseccion-tabla th, .biseccion-tabla td {
+  border: 1px solid #d1d5db;
+  padding: 6px 8px;
+  text-align: center;
+}
+.biseccion-tabla th {
+  background: #f0f4fa;
+  color: #2d3a4a;
+  font-weight: 600;
+}
+.biseccion-tabla tr:nth-child(even) {
+  background: #f8fafc;
+}
+.btn-biseccion {
+  background: linear-gradient(90deg, #3182ce 60%, #4e54c8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-top: 10px;
+}
+.btn-biseccion:hover {
+  background: linear-gradient(90deg, #4e54c8 40%, #3182ce 100%);
+  transform: translateY(-2px) scale(1.04);
+}
