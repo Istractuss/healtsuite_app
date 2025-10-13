@@ -113,12 +113,21 @@ document.addEventListener('DOMContentLoaded', () => {
             html += '<h4>Ecuaciones de cada iteración:</h4><ol style="text-align:left;">';
             for (let i = 0; i < tabla.length; i++) {
                 const row = tabla[i];
-                html += `<li>
-                X<sub>i</sub> = ${row.xi.toFixed(4)}<br>
-                X<sub>d</sub> = ${row.xd.toFixed(4)}<br>
-                X<sub>m</sub> = (X<sub>i</sub> + X<sub>d</sub>) / 2 = (${row.xi.toFixed(4)} + ${row.xd.toFixed(4)}) / 2 = <b>${row.xm.toFixed(4)}</b><br>
-                f(X<sub>i</sub>) * f(X<sub>m</sub>) = (${row['f(xi)'].toFixed(4)}) * (${row['f(xm)'].toFixed(4)}) = <b>${Number(row['f(xi)*f(xm)']).toFixed(4)}</b>
-                </li>`;
+                if (metodo === 'biseccion') {
+                    html += `<li>
+                    X<sub>i</sub> = ${row.xi.toFixed(4)}<br>
+                    X<sub>d</sub> = ${row.xd.toFixed(4)}<br>
+                    X<sub>m</sub> = (X<sub>i</sub> + X<sub>d</sub>) / 2 = (${row.xi.toFixed(4)} + ${row.xd.toFixed(4)}) / 2 = <b>${row.xm.toFixed(4)}</b><br>
+                    f(X<sub>i</sub>) * f(X<sub>m</sub>) = (${row['f(xi)'].toFixed(4)}) * (${row['f(xm)'].toFixed(4)}) = <b>${Number(row['f(xi)*f(xm)']).toFixed(4)}</b>
+                    </li>`;
+                } else if (metodo === 'regla-falsa') {
+                    html += `<li>
+                    X<sub>i</sub> = ${row.xi.toFixed(4)}<br>
+                    X<sub>d</sub> = ${row.xd.toFixed(4)}<br>
+                    C = (X<sub>i</sub> * f(X<sub>d</sub>) - X<sub>d</sub> * f(X<sub>i</sub>)) / (f(X<sub>d</sub>) - f(X<sub>i</sub>)) = (${row.xi.toFixed(4)} * ${row['f(xd)'].toFixed(4)} - ${row.xd.toFixed(4)} * ${row['f(xi)'].toFixed(4)}) / (${row['f(xd)'].toFixed(4)} - ${row['f(xi)'].toFixed(4)}) = <b>${row.xm.toFixed(4)}</b><br>
+                    f(X<sub>i</sub>) * f(C) = (${row['f(xi)'].toFixed(4)}) * (${row['f(xm)'].toFixed(4)}) = <b>${Number(row['f(xi)*f(xm)']).toFixed(4)}</b>
+                    </li>`;
+                }
             }
             html += '</ol>';
             html += `<p><b>Raíz aproximada:</b> x = ${xm.toFixed(8)} <br><b>f(x):</b> ${fxm.toFixed(8)}</p>`;
