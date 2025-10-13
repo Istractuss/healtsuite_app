@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             // Obtener datos
+            const metodo = document.getElementById('metodo-seleccionado').value;
             let fxStr = document.getElementById('biseccion-funcion').value;
             fxStr = fxStr.replace(/\^/g, '**');
             fxStr = fxStr.replace(/(\d)(x)/g, '$1*$2');
@@ -42,36 +43,68 @@ document.addEventListener('DOMContentLoaded', () => {
             let tabla = [];
             let error = Math.abs(a - b);
             let xm = null, fxm = null;
-            while (n < maxIter) {
-                // Redondear antes de calcular funciones
-                let xi = Number(a.toFixed(4));
-                let xd = Number(b.toFixed(4));
-                xm = Number(((xi + xd) / 2).toFixed(4));
-                let fa = Number(f(xi).toFixed(4));
-                let fb = Number(f(xd).toFixed(4));
-                fxm = Number(f(xm).toFixed(4));
-                tabla.push({
-                    n: n + 1,
-                    xi: xi,
-                    xd: xd,
-                    xm: xm,
-                    'f(xi)': fa,
-                    'f(xd)': fb,
-                    'f(xm)': fxm,
-                    'f(xi)*f(xm)': Number((fa * fxm).toFixed(4))
-                });
-                if (error < tol || Math.abs(fxm) < tol) {
-                    break;
+            if (metodo === 'biseccion') {
+                while (n < maxIter) {
+                    // Redondear antes de calcular funciones
+                    let xi = Number(a.toFixed(4));
+                    let xd = Number(b.toFixed(4));
+                    xm = Number(((xi + xd) / 2).toFixed(4));
+                    let fa = Number(f(xi).toFixed(4));
+                    let fb = Number(f(xd).toFixed(4));
+                    fxm = Number(f(xm).toFixed(4));
+                    tabla.push({
+                        n: n + 1,
+                        xi: xi,
+                        xd: xd,
+                        xm: xm,
+                        'f(xi)': fa,
+                        'f(xd)': fb,
+                        'f(xm)': fxm,
+                        'f(xi)*f(xm)': Number((fa * fxm).toFixed(4))
+                    });
+                    if (error < tol || Math.abs(fxm) < tol) {
+                        break;
+                    }
+                    if (fa * fxm < 0) {
+                        b = xm;
+                    } else {
+                        a = xm;
+                    }
+                    error = Math.abs(a - b);
+                    n++;
                 }
-                if (fa * fxm < 0) {
-                    b = xm;
-                } else {
-                    a = xm;
+            } else if (metodo === 'regla-falsa') {
+                while (n < maxIter) {
+                    let xi = Number(a.toFixed(4));
+                    let xd = Number(b.toFixed(4));
+                    let fa = Number(f(xi).toFixed(4));
+                    let fb = Number(f(xd).toFixed(4));
+                    // Regla falsa: xm = (xi*fb - xd*fa)/(fb-fa)
+                    xm = Number(((xi * fb - xd * fa) / (fb - fa)).toFixed(4));
+                    fxm = Number(f(xm).toFixed(4));
+                    tabla.push({
+                        n: n + 1,
+                        xi: xi,
+                        xd: xd,
+                        xm: xm,
+                        'f(xi)': fa,
+                        'f(xd)': fb,
+                        'f(xm)': fxm,
+                        'f(xi)*f(xm)': Number((fa * fxm).toFixed(4))
+                    });
+                    if (error < tol || Math.abs(fxm) < tol) {
+                        break;
+                    }
+                    if (fa * fxm < 0) {
+                        b = xm;
+                    } else {
+                        a = xm;
+                    }
+                    error = Math.abs(a - b);
+                    n++;
                 }
-                error = Math.abs(a - b);
-                n++;
             }
-            let html = `<h3>Tabla de iteraciones</h3><div style=\"overflow-x:auto\"><table class=\"biseccion-tabla\"><thead><tr><th>N</th><th>X<sub>i</sub></th><th>X<sub>d</sub></th><th>X<sub>m</sub></th><th>f(X<sub>i</sub>)</th><th>f(X<sub>d</sub>)</th><th>f(X<sub>m</sub>)</th><th>f(X<sub>i</sub>)*f(X<sub>m</sub>)</th></tr></thead><tbody>`;
+            let html = `<h3>Tabla de iteraciones (${metodo === 'biseccion' ? 'Bisección' : 'Regla Falsa'})</h3><div style=\"overflow-x:auto\"><table class=\"biseccion-tabla\"><thead><tr><th>N</th><th>X<sub>i</sub></th><th>X<sub>d</sub></th><th>X<sub>m</sub></th><th>f(X<sub>i</sub>)</th><th>f(X<sub>d</sub>)</th><th>f(X<sub>m</sub>)</th><th>f(X<sub>i</sub>)*f(X<sub>m</sub>)</th></tr></thead><tbody>`;
             for (const row of tabla) {
                 html += `<tr><td>${row.n}</td><td>${row.xi.toFixed(4)}</td><td>${row.xd.toFixed(4)}</td><td>${row.xm.toFixed(4)}</td><td>${row['f(xi)'].toFixed(4)}</td><td>${row['f(xd)'].toFixed(4)}</td><td>${row['f(xm)'].toFixed(4)}</td><td>${Number(row['f(xi)*f(xm)']).toFixed(4)}</td></tr>`;
             }
