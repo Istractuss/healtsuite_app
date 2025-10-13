@@ -20,8 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
             fxStr = fxStr.replace(/(\d)(x)/g, '$1*$2');
             fxStr = fxStr.replace(/(x)\s*\(/g, '$1*(');
             fxStr = fxStr.replace(/\)(x)/g, ')*$2');
-            const a0 = parseFloat(document.getElementById('biseccion-a').value);
-            const b0 = parseFloat(document.getElementById('biseccion-b').value);
+            const a0 = parseFloat(document.getElementById('biseccion-a').value.replace(',', '.'));
+            const b0 = parseFloat(document.getElementById('biseccion-b').value.replace(',', '.'));
+            if (isNaN(a0) || isNaN(b0)) {
+                resultado.style.display = 'block';
+                resultado.innerHTML = '<span style="color:red">Por favor ingresa valores numéricos válidos para a y b.</span>';
+                return;
+            }
             const tol = parseFloat(document.getElementById('biseccion-error').value);
             const maxIter = parseInt(document.getElementById('biseccion-maxiter').value) || 100;
             let f;
