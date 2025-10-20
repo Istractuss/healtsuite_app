@@ -200,21 +200,55 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             html += '</tbody></table></div>';
 
-            // Ecuaciones realizadas
-            html += '<h4>Ecuaciones de cada iteración:</h4><ol style="text-align:left;">';
+            // Detailed per-iteration breakdown
+            function full(v) { try { return Number(v).toPrecision(12); } catch (e) { return String(v); } }
+            html += '<h4>Detalle por iteración</h4><div style="text-align:left">';
             for (let i = 0; i < tabla.length; i++) {
                 const row = tabla[i];
-                if (metodo === 'biseccion') {
-                    html += `<li>Xi=${row.xi.toFixed(4)}; Xd=${row.xd.toFixed(4)}; Xm=(Xi+Xd)/2=${row.xm.toFixed(4)}; f(Xi)*f(Xm)=${Number(row['f(xi)*f(xm)']).toFixed(4)}</li>`;
-                } else if (metodo === 'regla-falsa') {
-                    html += `<li>Xi=${row.xi.toFixed(4)}; Xd=${row.xd.toFixed(4)}; C=(Xi*f(Xd)-Xd*f(Xi))/(f(Xd)-f(Xi))=${row.xm.toFixed(4)}; f(Xi)*f(C)=${Number(row['f(xi)*f(xm)']).toFixed(4)}</li>`;
+                html += `<div style="border:1px solid #ddd;padding:8px;margin:8px 0;background:#fafafa;"><strong>Iteración ${row.n}</strong><div style="margin-top:6px;">`;
+                if (metodo === 'biseccion' || metodo === 'regla-falsa') {
+                    // show Xi, Xd, unrounded f values, formula and rounded result
+                    const xi = row.xi; const xd = row.xd; const xm = row.xm;
+                    const fxi = row['f(xi)']; const fxd = row['f(xd)']; const fxm = row['f(xm)'];
+                    if (metodo === 'biseccion') {
+                        const formulaSub = `Xm = (Xi + Xd)/2 = (${full(xi)} + ${full(xd)})/2 = ${full((xi + xd)/2)}`;
+                        html += `<div><b>Xi</b>: ${xi.toFixed(4)} (full: ${full(xi)})<br><b>Xd</b>: ${xd.toFixed(4)} (full: ${full(xd)})</div>`;
+                        html += `<div style="margin-top:6px"><b>f(Xi)</b>: ${fxi.toFixed(4)} (full: ${full(f(xi))})<br><b>f(Xm)</b>: ${fxm.toFixed(4)} (full: ${full(f(xm))})</div>`;
+                        html += `<div style="margin-top:6px"><b>Cálculo</b>: ${formulaSub}<br><b>Resultado mostrado</b>: <b>${xm.toFixed(4)}</b></div>`;
+                        html += `<div style="margin-top:6px"><b>Producto</b>: f(Xi)*f(Xm) = (${fxi.toFixed(4)})*(${fxm.toFixed(4)}) = ${Number(row['f(xi)*f(xm)']).toFixed(4)}</div>`;
+                    } else {
+                        // regla falsa
+                        const numer = xi * fxd - xd * fxi;
+                        const denom = (fxd - fxi);
+                        const xmFull = numer / denom;
+                        html += `<div><b>Xi</b>: ${xi.toFixed(4)} (full: ${full(xi)})<br><b>Xd</b>: ${xd.toFixed(4)} (full: ${full(xd)})</div>`;
+                        html += `<div style="margin-top:6px"><b>f(Xi)</b>: ${fxi.toFixed(4)} (full: ${full(f(xi))})<br><b>f(Xd)</b>: ${fxd.toFixed(4)} (full: ${full(f(xd))})</div>`;
+                        html += `<div style="margin-top:6px"><b>Cálculo</b>: C = (Xi*f(Xd) - Xd*f(Xi)) / (f(Xd)-f(Xi)) = (${full(xi)}*${full(fxd)} - ${full(xd)}*${full(fxi)}) / (${full(fxd)} - ${full(fxi)}) = ${full(xmFull)}<br><b>Resultado mostrado</b>: <b>${xm.toFixed(4)}</b></div>`;
+                        html += `<div style="margin-top:6px"><b>Producto</b>: f(Xi)*f(C) = (${fxi.toFixed(4)})*(${fxm.toFixed(4)}) = ${Number(row['f(xi)*f(xm)']).toFixed(4)}</div>`;
+                    }
                 } else if (metodo === 'secante') {
-                    html += `<li>X0=${row.x0.toFixed(4)}; X1=${row.x1.toFixed(4)}; X2=X1 - f(X1)*(X1-X0)/(f(X1)-f(X0))=${row.x2.toFixed(4)}; f(X2)=${row['f(x2)'].toFixed(4)}</li>`;
+                    const x0 = row.x0, x1 = row.x1, x2 = row.x2;
+                    const f0 = row['f(x0)'], f1 = row['f(x1)'], f2 = row['f(x2)'];
+                    // compute internal values from full f using function if available
+                    html += `<div><b>X0</b>: ${x0.toFixed(4)} (full: ${full(x0)})<br><b>X1</b>: ${x1.toFixed(4)} (full: ${full(x1)})</div>`;
+                    html += `<div style="margin-top:6px"><b>f(X0)</b>: ${f0.toFixed(4)} (full: ${full(f(x0))})<br><b>f(X1)</b>: ${f1.toFixed(4)} (full: ${full(f(x1))})</div>`;
+                    const numer = (x1 - x0) * Number(f1.toString());
+                    const denom = (Number(f1.toString()) - Number(f0.toString()));
+                    const x2full = (Number(x1) - Number(f1.toString()) * (Number(x1) - Number(x0)) / denom);
+                    html += `<div style="margin-top:6px"><b>Cálculo secante</b>: X2 = X1 - f(X1)*(X1-X0)/(f(X1)-f(X0)) = (${full(x1)} - ${full(f1)}*(${full(x1)} - ${full(x0)})/(${full(f1)} - ${full(f0)})) = ${full(x2full)}<br><b>Resultado mostrado</b>: <b>${x2.toFixed(4)}</b></div>`;
+                    html += `<div style="margin-top:6px"><b>f(X2)</b>: ${f2.toFixed(4)} (full: ${full(f(x2))})</div>`;
                 } else if (metodo === 'newton') {
-                    html += `<li>X0=${row.x0.toFixed(4)}; f'(X0)≈${row['fp(x0)'].toFixed(4)}; X1=X0 - f(X0)/f'(X0)=${row.x1.toFixed(4)}; f(X1)=${row['f(x1)'].toFixed(4)}</li>`;
+                    const x0 = row.x0, x1 = row.x1;
+                    const f0 = row['f(x0)'], fp0 = row['fp(x0)'], f1 = row['f(x1)'];
+                    html += `<div><b>X0</b>: ${x0.toFixed(4)} (full: ${full(x0)})</div>`;
+                    html += `<div style="margin-top:6px"><b>f(X0)</b>: ${f0.toFixed(4)} (full: ${full(f(x0))})<br><b>f'(X0)</b>: ${fp0.toFixed(4)} (full: ${full(fp0)})</div>`;
+                    const x1full = Number(x0) - Number(f(x0)) / Number(fp0);
+                    html += `<div style="margin-top:6px"><b>Cálculo Newton</b>: X1 = X0 - f(X0)/f'(X0) = (${full(x0)} - ${full(f(x0))}/${full(fp0)}) = ${full(x1full)}<br><b>Resultado mostrado</b>: <b>${x1.toFixed(4)}</b></div>`;
+                    html += `<div style="margin-top:6px"><b>f(X1)</b>: ${f1.toFixed(4)} (full: ${full(f(x1))})</div>`;
                 }
+                html += '</div></div>';
             }
-            html += '</ol>';
+            html += '</div>';
             html += `<p><b>Raíz aproximada:</b> x = ${xm !== null ? xm.toFixed(8) : '-'} <br><b>f(x):</b> ${fxm !== null ? fxm.toFixed(8) : '-'}</p>`;
             resultado.style.display = 'block';
             resultado.innerHTML = html;
