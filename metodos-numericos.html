@@ -18,29 +18,73 @@
                     <select id="metodo-seleccionado">
                         <option value="biseccion">Bisección</option>
                         <option value="regla-falsa">Regla Falsa</option>
+                        <option value="secante">Secante</option>
+                        <option value="newton">Newton</option>
                     </select>
                 </label><br><br>
                 <label>Función f(x):
                     <input type="text" id="biseccion-funcion" placeholder="Ej: x^3 - x - 2" required>
                 </label><br><br>
-                <label>a (mínimo):
-                    <input type="text" id="biseccion-a" required placeholder="Ej: -2.5">
+                <label>a (X0 / Xi):
+                    <input type="text" id="biseccion-a" required placeholder="Ej: 1" value="1">
                 </label><br><br>
-                <label>b (máximo):
-                    <input type="text" id="biseccion-b" required placeholder="Ej: 3.5">
+                <label id="label-b">b (X1 / Xd):
+                    <input type="text" id="biseccion-b" required placeholder="Ej: 5" value="5">
                 </label><br><br>
+                <label style="display:block;" id="label-deriv">Derivada (opcional para Newton):
+                    <input type="text" id="biseccion-derivada" placeholder="Ej: 4*x+5">
+                </label><br>
                 <label>Error tolerado (ε):
-                    <input type="number" id="biseccion-error" step="any" min="0" value="0.0001" required>
+                    <input type="number" id="biseccion-error" step="any" min="0" value="0.01" required>
                 </label><br><br>
                 <label>Máximo de iteraciones:
                     <input type="number" id="biseccion-maxiter" min="1" max="500" value="100" required>
                 </label><br><br>
                 <button type="submit" class="btn-biseccion">Calcular</button>
+                <button type="button" id="btn-ejemplo" class="btn-biseccion" style="margin-left:8px;">Cargar ejemplo profesor</button>
             </form>
             <button id="btn-volver-menu" class="btn-biseccion" style="margin-top:20px;">Volver al menú principal</button>
         </div>
         <div id="biseccion-resultado" class="metodos-card" style="display:none;"></div>
+        <div id="metodos-guia" class="metodos-card" style="display:none;">
+            <h3>Guía paso a paso</h3>
+            <p>Esta guía te muestra cómo obtener los resultados paso a paso para Bisección, Regla Falsa, Secante y Newton. Usa el botón "Cargar ejemplo profesor" y luego presiona "Calcular" para ver la tabla; la guía explica cómo se obtuvieron los números.</p>
+            <ol>
+                <li>Ingresa la función en notación humana, por ejemplo <code>2x^2+5x-2</code>. El parser convertirá <code>^</code> a potencias y añadirá multiplicaciones faltantes.</li>
+                <li>Selecciona el método (Bisección, Regla Falsa, Secante o Newton).</li>
+                <li>Introduce los valores iniciales: para Secante usa Xi=1 y Xd=5; para Newton usa X0=4; la tolerancia en el ejemplo es 0.01.</li>
+                <li>Presiona "Calcular". La tabla mostrará cada iteración con 4 decimales (los cálculos internos usan máxima precisión).</li>
+                <li>Para reproducir la fila de la hoja de cálculo del profesor: usa los Xi/Xd/X0 mostrados en la tabla y aplica la fórmula del método con los valores sin redondear, luego redondea el resultado final a 4 decimales para mostrar.</li>
+            </ol>
+            <h4>Ejemplo rápido (Secante, función 2x^2+5x-2)</h4>
+            <p>Con Xi=1, Xd=5 y tol=0.01, la secante calcula X2 = X1 - f(X1)*(X1-X0)/(f(X1)-f(X0)). En la app usamos f en precisión completa para la fórmula y mostramos X2 redondeado a 4 decimales, reproduciendo la hoja del profesor.</p>
+            <button id="btn-toggle-guia" class="btn-biseccion">Cerrar guía</button>
+        </div>
     </main>
     <script src="js/metodos-numericos.js"></script>
+    <script>
+        // small UI helpers
+        const metodoSel = document.getElementById('metodo-seleccionado');
+        const labelB = document.getElementById('label-b');
+        const labelDeriv = document.getElementById('label-deriv');
+        if (metodoSel) {
+            metodoSel.addEventListener('change', () => {
+                labelB.style.display = metodoSel.value === 'newton' ? 'none' : '';
+                labelDeriv.style.display = metodoSel.value === 'newton' ? '' : 'none';
+            });
+            // initial toggle
+            metodoSel.dispatchEvent(new Event('change'));
+        }
+        const btnEj = document.getElementById('btn-ejemplo');
+        if (btnEj) btnEj.addEventListener('click', () => {
+            document.getElementById('biseccion-funcion').value = '2x^2+5x-2';
+            document.getElementById('biseccion-a').value = '1';
+            document.getElementById('biseccion-b').value = '5';
+            document.getElementById('biseccion-error').value = '0.01';
+            document.getElementById('biseccion-maxiter').value = '100';
+            document.getElementById('metodo-seleccionado').value = 'secante';
+            metodoSel.dispatchEvent(new Event('change'));
+        });
+    </script>
 </body>
 </html>
