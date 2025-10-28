@@ -23,32 +23,35 @@
                     </select>
                 </label><br><br>
                 <label>Función f(x):
-                    <input type="text" id="biseccion-funcion" placeholder="Ej: x^3 - x - 2" required>
+                    <input type="text" id="biseccion-funcion" placeholder="Ej: x^3 - x - 2" value="3x^3-3x+6" readonly required>
+                    <button type="button" id="btn-editar-func" class="btn-biseccion" style="margin-left:8px;">Editar función</button>
                 </label><br><br>
                 <label>a (X0 / Xi):
-                    <input type="text" id="biseccion-a" required placeholder="Ej: 1" value="1">
+                    <input type="text" id="biseccion-a" required placeholder="Ej: 1">
+                    <span id="error-a" class="input-error" style="color:#b00;display:inline-block;margin-left:8px;"></span>
                 </label><br><br>
                 <label id="label-b">b (X1 / Xd):
-                    <input type="text" id="biseccion-b" required placeholder="Ej: 5" value="5">
+                    <input type="text" id="biseccion-b" required placeholder="Ej: 5">
+                    <span id="error-b" class="input-error" style="color:#b00;display:inline-block;margin-left:8px;"></span>
                 </label><br><br>
                 <label style="display:block;" id="label-deriv">Derivada (opcional para Newton):
                     <input type="text" id="biseccion-derivada" placeholder="Ej: 4*x+5">
                 </label><br>
                 <label>Error tolerado (ε):
                     <input type="number" id="biseccion-error" step="any" min="0" value="0.01" required>
+                    <span id="error-tol" class="input-error" style="color:#b00;display:inline-block;margin-left:8px;"></span>
                 </label><br><br>
                 <label>Máximo de iteraciones:
                     <input type="number" id="biseccion-maxiter" min="1" max="500" value="100" required>
                 </label><br><br>
                 <button type="submit" class="btn-biseccion">Calcular</button>
-                <button type="button" id="btn-ejemplo" class="btn-biseccion" style="margin-left:8px;">Cargar ejemplo profesor</button>
             </form>
             <button id="btn-volver-menu" class="btn-biseccion" style="margin-top:20px;">Volver al menú principal</button>
         </div>
         <div id="biseccion-resultado" class="metodos-card" style="display:none;"></div>
         <div id="metodos-guia" class="metodos-card" style="display:none;">
             <h3>Guía paso a paso</h3>
-            <p>Esta guía te muestra cómo obtener los resultados paso a paso para Bisección, Regla Falsa, Secante y Newton. Usa el botón "Cargar ejemplo profesor" y luego presiona "Calcular" para ver la tabla; la guía explica cómo se obtuvieron los números.</p>
+            <p>Esta guía te muestra cómo obtener los resultados paso a paso para Bisección, Regla Falsa, Secante y Newton. Rellena los campos (puedes editar la función con "Editar función") y presiona "Calcular" para ver la tabla; la guía explica cómo se obtuvieron los números.</p>
             <ol>
                 <li>Ingresa la función en notación humana, por ejemplo <code>2x^2+5x-2</code>. El parser convertirá <code>^</code> a potencias y añadirá multiplicaciones faltantes.</li>
                 <li>Selecciona el método (Bisección, Regla Falsa, Secante o Newton).</li>
@@ -75,16 +78,34 @@
             // initial toggle
             metodoSel.dispatchEvent(new Event('change'));
         }
-        const btnEj = document.getElementById('btn-ejemplo');
-        if (btnEj) btnEj.addEventListener('click', () => {
-            document.getElementById('biseccion-funcion').value = '2x^2+5x-2';
-            document.getElementById('biseccion-a').value = '1';
-            document.getElementById('biseccion-b').value = '5';
-            document.getElementById('biseccion-error').value = '0.01';
-            document.getElementById('biseccion-maxiter').value = '100';
-            document.getElementById('metodo-seleccionado').value = 'secante';
-            metodoSel.dispatchEvent(new Event('change'));
-        });
+        // Note: example preset button removed per request.
+        // Editar función button: toggle readonly so user can input custom function
+        const btnEditarFunc = document.getElementById('btn-editar-func');
+        const inputFunc = document.getElementById('biseccion-funcion');
+        if (btnEditarFunc && inputFunc) {
+            btnEditarFunc.addEventListener('click', () => {
+                if (inputFunc.readOnly) {
+                    // enable editing
+                    inputFunc.readOnly = false;
+                    inputFunc.focus();
+                    btnEditarFunc.textContent = 'Aceptar función';
+                } else {
+                    // accept changes and disable editing
+                    inputFunc.readOnly = true;
+                    // normalize whitespace and restore default if empty
+                    const DEFAULT_FUNC = '3x^3-3x+6';
+                    const newVal = inputFunc.value.trim();
+                    if (!newVal) {
+                        inputFunc.value = DEFAULT_FUNC;
+                    } else {
+                        inputFunc.value = newVal;
+                    }
+                    btnEditarFunc.textContent = 'Editar función';
+                    // trigger an input event so validators react to the new value
+                    inputFunc.dispatchEvent(new Event('input'));
+                }
+            });
+        }
     </script>
 </body>
 </html>
