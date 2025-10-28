@@ -66,3 +66,18 @@
   background: linear-gradient(90deg, #4e54c8 40%, #3182ce 100%);
   transform: translateY(-2px) scale(1.04);
 }
+
+/* Selector de método - pills */
+#metodo-seleccionado { display: none; }
+.metodo-pills { display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 14px 0; }
+.metodo-pill { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; border:1px solid transparent; background:#f4f7fb; cursor:pointer; font-weight:600; color:#223344; transition:transform .12s, box-shadow .12s, background .12s; }
+.metodo-pill .metodo-pill-icon { font-size:1.1em; }
+.metodo-pill:hover { transform:translateY(-2px); box-shadow: 0 6px 18px rgba(50,60,90,0.06); }
+.metodo-pill.active { background: linear-gradient(90deg,#e9f0ff 0%, #f5f7ff 100%); border-color:#cfe0ff; box-shadow: 0 8px 20px rgba(46,84,168,0.06); }
+.metodo-pill.active .metodo-pill-label { color:#163e6d; }
+
+/* descripción bajo el selector */
+#metodo-desc { margin-top:6px; color:#334455; font-size:0.95rem; }
+
+/* botón deshabilitado más evidente */
+button[disabled] { opacity:0.6; cursor:not-allowed; filter:grayscale(8%); }
